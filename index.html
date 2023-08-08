@@ -1,0 +1,522 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Функции в JavaScript</title>
+</head>
+<body>
+  <nav id="navbar">
+    <header>В этом материале:</header>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Функции_в_JavaScript"  class="nav-link">Функции в JavaScript</a></p>
+    </div>
+    
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Объявление_функций" class="nav-link">Объявление функций<br></a></p>
+    </div>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Вызовы_функций" class="nav-link">Вызовы функций</a></p>
+    </div>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Область_видимости_функций" class="nav-link">Область видимости функций</a></p>
+    </div>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Scope_и_стек_функции" class="nav-link">Scope и стек функции</a></p>
+    </div>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Замыкания" class="nav-link">Замыкания</a></p>
+    </div>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Использование_объекта_arguments" class="nav-link">Использование объекта arguments
+      </a></p>
+    </div>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Параметры_функции" class="nav-link">Параметры функции</a></p>
+    </div>
+    <div id="nav-div">
+      <p id="nav-paragraf"><a href="#Стрелочные_функции" class="nav-link">Стрелочные функции</a></p>
+    </div>
+  </nav>
+  <main id="main-doc">
+    <section>
+      <h1>Функции</h1>
+    </section>
+    <section class="main-section" id="Функции_в_JavaScript">
+      <header id="functions_in_js">
+        <h2>Функции в JavaScript</h2>
+      </header>
+      <p>Функции - ключевая концепция в JavaScript. Важнейшей особенностью языка является поддержка функции первого класса <i>(functions as first-class citizen)</i>. Любая <b>функция - это объект</b>, и следовательно ею можно манипулировать как объектом, в частности:</p>
+      <ul>
+        <li>передавать как аргумент и возвращать в качестве результата при вызове других функций функций высшего порядка;</li>
+        <li>создавать анонимно и присваивать в качестве значений переменных или свойств объектов.</li>
+      </ul>
+      <p>Это определяет высокую выразительную мощность JavaScript и позволяет относить его к числу языков, реализующих функциональную парадигму программирования.</p>
+      <p><strong>Функция в JavaScript</strong> специальный тип объектов, позволяющий формализовать средствами языка определённую логику поведения и обработки данных.</p>
+      <p>Для понимания работы функций необходимо (и достаточно?) иметь представление о следующих моментах:</p>
+      <ul>
+        <li>способы объявления</li>
+        <li>способы вызова</li>
+        <li>параметры и аргументы вызова (<code>arguments</code>)</li>
+        <li>область данных (<code>Scope</code>) и замыкания (<code>Closures</code>)
+        </li>
+        <li>объект привязки (<code>this</code>)
+        </li>
+        <li>возвращаемое значение (<code>return</code>)</li>
+        <li>исключения (<code>throw</code>)</li>
+        <li>использование в качестве конструктора объектов</li>
+        <li>сборщик мусора (<code>garbage collector</code>)</li>
+      </ul>
+    </section>
+    <section class="main-section" id="Объявление_функций">
+      <header id="function_definition">
+        <h2>Объявление функций</h2>
+      </header>
+      <h3>Функции вида "function declaration statement"</h3>
+      <p>Объявление функции (<i>function definition, или function declaration, или function statement</i>) состоит из ключевого слова <code>function</code> и следующих частей:</p>
+      <ul>
+        <li>Имя функции.</li>
+        <li>Список параметров (принимаемых функцией) заключённых в круглые скобки <code>()</code> и разделённых запятыми.</li>
+        <li>Инструкции, которые будут выполнены после вызова функции, заключают в фигурные скобки <code>{ }</code>.</li>
+      </ul>
+      <p>Например, следующий код объявляет простую функцию с именем <code>square</code>:</p>
+      <code class="code-piece">
+        function square(number) {<br>
+          &nbsp;return number * number;<br>
+        }
+      </code>
+      <p>Функция <code>square</code> принимает один параметр, названный <code>number.</code> Состоит из одной инструкции, которая означает вернуть параметр этой функции (это <code>number</code>) умноженный на самого себя. Инструкция return указывает на значение, которые будет возвращено функцией.</p>
+      <code class="code-piece">
+        return number * number;
+      </code>
+      <p>Примитивные параметры (например, число) передаются функции значением; <b>значение</b> передаётся в функцию, но если функция меняет значение параметра, <b>это изменение не отразится глобально или после вызова функции.</b></p>
+      <p>Если вы передадите объект как параметр (не примитив, например, массив или определяемые пользователем объекты), и функция изменит свойство переданного в неё объекта, это изменение будет видно и вне функции, как показано в следующем примере:</p>
+      <code class="code-piece">
+        function myFunc(theObject) {<br>
+          &nbsp; theObject.make = 'Toyota';<br>
+        }<br>
+        <br>
+        var mycar = {make: 'Honda', model: 'Accord', year: 1998};<br>
+        var x, y;<br>
+        <br>
+        x = mycar.make; // x получает значение "Honda"<br>
+        <br>
+        myFunc(mycar);<br>
+        y = mycar.make; // y получает значение "Toyota"<br>
+      </code>
+      <h3>Функции вида "function definition expression"</h3>
+      <p>Функция вида "function declaration statement" по синтаксису является инструкцией (<i>statement</i>), ещё функция может быть вида "function definition expression". Такая функция может быть <b>анонимной</b> (она не имеет имени). Например, функция <code>square</code> может быть вызвана так:</p>
+      <code class="code-piece">
+        var square = function(number) { return number * number; };<br>
+var x = square(4); // x получает значение 16
+      </code>
+      <p>Однако, имя может быть и присвоено для вызова самой себя внутри самой функции и для отладчика (<i>debugger</i>>) для идентифицированные функции в стек-треках (<i>stack traces</i>; "trace" — "след" / "отпечаток").</p>
+      <code class="code-piece">
+        var factorial = function fac(n) { return n < 2 ? 1 : n * fac(n - 1); };<br>
+        <br>
+console.log(factorial(3));
+      </code>
+      <p>
+        Функции вида "function definition expression" удобны, когда функция передаётся аргументом другой функции. Следующий пример показывает функцию <code>map</code>, которая должна получить функцию первым аргументом и массив вторым.
+      </p>
+      <code class="code-piece">
+        function map(f, a) {<br>
+          &nbsp;var result = [], // Создаём новый массив<br>
+        &nbsp; &nbsp; &nbsp;  i;<br>
+        &nbsp;for (i = 0; i != a.length; i++)<br>
+        &nbsp; &nbsp; result[i] = f(a[i]);<br>
+        &nbsp;return result;<br>
+      }
+    </code>
+    <p>
+      В следующем коде наша функция принимает функцию, которая является function definition expression, и выполняет его для каждого элемента принятого массива вторым аргументом.
+    </p>
+    <code class="code-piece">
+      function map(f, a) {<br>
+        &nbsp; var result = []; // Создаём новый массив<br>
+        &nbsp; var i; // Объявляем переменную<br>
+        &nbsp; for (i = 0; i != a.length; i++)<br>
+        &nbsp;&nbsp;   result[i] = f(a[i]);<br>
+        &nbsp;&nbsp;&nbsp;    return result;<br>
+      }<br>
+      var f = function(x) {<br>
+        &nbsp;  return x * x * x;<br>
+      }<br>
+      var numbers = [0, 1, 2, 5, 10];<br>
+      var cube = map(f,numbers);<br>
+      console.log(cube);
+    </code>
+    <p>Функция возвращает: [0, 1, 8, 125, 1000].</p>
+    <p>В JavaScript функция может быть объявлена с условием. Например, следующая функция будет присвоена переменной <code>myFunc</code> только, если <code>num</code> равно 0:</p>
+    <code class="code-piece">
+      var myFunc;<br>
+      if (num === 0) {<br>
+        &nbsp; myFunc = function(theObject) {<br>
+          &nbsp;&nbsp;  theObject.make = 'Toyota';<br>
+          &nbsp;}<br>
+      }
+    </code>
+    </section>
+    <section class="main-section" id="Вызовы_функций">
+      <header id="function_call">
+        <h2>Вызовы функций</h2>
+      </header>
+      <p>Объявление функции не выполняет её. Объявление функции просто называет функцию и указывает, что делать при вызове функции.</p>
+      <p><b>Вызов</b> функции фактически выполняет указанные действия с указанными параметрами. Например, если вы определите функцию <code>square</code>, вы можете вызвать её следующим образом:</p>
+      <code class="code-piece">
+        square(5);
+      </code>
+      <p>Эта инструкция вызывает функцию с аргументом 5. Функция вызывает свои инструкции и возвращает значение 25.</p>
+      <p>Функции могут быть в области видимости, когда они уже определены, но функции вида "function declaration statement" могут быть подняты (поднятие — hoisting), также как в этом примере:</p>
+      <code class="code-piece">
+        console.log(square(5));<br>
+          /* ... */<br>
+          function square(n) { return n * n; }
+      </code>
+      <p>Область видимости функции — функция, в котором она определена, или целая программа, если она объявлена по уровню выше.</p>
+      <div class="note">
+        <p><b>Примечание</b>: Это работает только тогда, когда объявлении функции использует вышеупомянутый синтаксис (т.е. <code>function funcName(){}</code>). Код ниже не будет работать. Имеется в виду то, что поднятие функции работает только с function declaration и не работает с function expression.</p>
+      </div>
+      <br>
+      <code class="code-piece error">
+        console.log(square); // square поднят со значением undefined.<br>
+console.log(square(5)); // TypeError: square is not a function<br>
+var square = function(n) {<br>
+  &nbsp;return n * n;<br>
+}
+      </code>
+      <p>Аргументы функции не ограничиваются строками и числами. Вы можете передавать целые объекты в функцию. Функция <code>show_props()</code> (объявленная в Работа с объектами) является примером функции, принимающей объекты аргументом.</p>
+      <p>Функция может вызвать саму себя. Например, вот функция рекурсивного вычисления факториала:</p>
+      <code class="code-piece">
+        function factorial(n) {<br>
+          &nbsp; if ((n === 0) || (n === 1))<br>
+          &nbsp;&nbsp;  return 1;<br>
+          &nbsp;else<br>
+          &nbsp;&nbsp;  return (n * factorial(n - 1));<br>
+        }
+      </code>
+      <p>Затем вы можете вычислить факториалы от одного до пяти следующим образом:</p>
+      <code class="code-piece">
+        var a, b, c, d, e;<br>
+a = factorial(1); // a получает значение 1<br>
+b = factorial(2); // b получает значение 2<br>
+c = factorial(3); // c получает значение 6<br>
+d = factorial(4); // d получает значение 24<br>
+e = factorial(5); // e получает значение 120
+      </code>
+      <p>
+        Есть другие способы вызвать функцию. Существуют частые случаи, когда функции необходимо вызывать динамически, или поменять номера аргументов функции, или необходимо вызвать функцию с привязкой к определённому контексту. Оказывается, что функции сами по себе являются объектами, и эти объекты в свою очередь имеют методы. Один из них это метод apply(), использование которого может достигнуть этой цели.
+      </p>
+    </section>
+    <section class="main-section" id="Область_видимости_функций">
+      <header id="function_scope">
+        <h2>Область видимости функций</h2>
+      </header>
+      <h4>(function scope)</h4>
+      <p>Переменные объявленные в функции не могут быть доступными где-нибудь вне этой функции, поэтому переменные (которые нужны именно для функции) объявляют только в scope функции. При этом функция имеет доступ ко всем переменным и функциям, объявленным внутри её scope. Другими словами функция объявленная в глобальном scope имеет доступ ко всем переменным в глобальном scope. Функция объявленная внутри другой функции ещё имеет доступ и ко всем переменным её родительской функции и другим переменным, к которым эта родительская функция имеет доступ.</p>
+      <code class="code-piece">
+        // Следующие переменные объявленны в глобальном<br> scope<br>
+var num1 = 20,<br>
+&nbsp;&nbsp;    num2 = 3,<br>
+&nbsp;&nbsp;   name = 'Chamahk';<br>
+    <br>
+// Эта функция объявленна в глобальном scope<br>
+function multiply() {<br>
+  &nbsp; return num1 * num2;<br>
+}<br>
+<br>
+multiply(); // вернёт 60<br>
+<br>
+// Пример вложенной функции<br>
+function getScore() {<br>
+  &nbsp;var num1 = 2,<br>
+  &nbsp;&nbsp;    num2 = 3;<br>
+      <br>
+  function add() {<br>
+    &nbsp; return name + ' scored ' + (num1 + num2);<br>
+  }<br>
+  <br>
+  &nbsp; return add();<br>
+}<br>
+<br>
+getScore(); // вернёт "Chamahk scored 5"
+</code>
+    </section>
+    <section class="main-section" id="Scope_и_стек_функции">
+      <header id="function_stack">
+      <h2>Scope и стек функции</h2>
+    </header>
+    <h4>(function stack)</h4>
+    <p class="big-paragraph">Рекурсия
+    </p>
+    <p>Функция может вызывать саму себя. Три способа такого вызова:</p>
+    <ol>
+      <li>по имени функции</li>
+      <li><code>arguments.callee</code></li>
+      <li>по переменной, которая ссылается на функцию
+      </li>
+    </ol>
+    <p>Для примера рассмотрим следующие функции:</p>
+    <code class="code-piece">
+      var foo = function bar() {<br>
+        &nbsp; // здесь будут выражения<br>
+     };
+    </code>
+    <p>Функция, которая вызывает саму себя, называется <b>рекурсивной функцией</b> (recursive function). Получается, что рекурсия аналогична циклу (loop). Оба вызывают некоторый код несколько раз, и оба требуют условия (чтобы избежать бесконечного цикла, вернее бесконечной рекурсии). Например, следующий цикл:</p>
+    <code class="code-piece">
+      var x = 0;<br>
+      while (x < 10) { // "x < 10" — это условие для цикла<br>
+      &nbsp;&nbsp; // что-то делаем<br>
+      &nbsp;&nbsp; x++;<br>
+    }
+  </code>
+  <p>Можно было изменить на рекурсивную функцию и вызовом этой функции:</p>
+  <code class="code-piece">
+    function loop(x) {<br>
+      &nbsp; if (x >= 10) // "x >= 10" — это условие для конца<br> выполнения (тоже самое, что "!(x < 10)")<br>
+      &nbsp;&nbsp; return;<br>
+      &nbsp; // делать что-то<br>
+      &nbsp; loop(x + 1); // рекурсионный вызов<br>
+    }<br>
+    loop(0);
+  </code>
+    </section>
+    <section class="main-section" id="Замыкания">
+      <header id="function_closure">
+        <h2>Замыкания</h2>
+      </header>
+      <h4>(Closures)</h4>
+      <p>Closures это один из главных особенностей JavaScript. JavaScript разрешает вложенность функций и предоставляет вложенной функции полный доступ ко всем переменным и функциям, объявленным внутри внешней функции (и другим переменным и функции, к которым имеет доступ эта внешняя функция).</p>
+      <p>Однако, внешняя функция не имеет доступа к переменным и функциям, объявленным во внутренней функции. Это обеспечивает своего рода инкапсуляцию для переменных внутри вложенной функции.
+      </p>
+      <p>Также, поскольку вложенная функция имеет доступ к scope внешней функции, переменные и функции, объявленные во внешней функции, будет продолжать существовать и после её выполнения для вложенной функции, если на них и на неё сохранился доступ (имеется ввиду, что переменные, объявленные во внешней функции, сохраняются, только если внутренняя функция обращается к ним).
+      </p>
+      <p>Closure создаётся, когда вложенная функция как-то стала доступной в неком scope вне внешней функции.
+      </p>
+      <code class="code-piece">
+        var pet = function(name) {   &nbsp;&nbsp;// Внешняя функция объявила<br> переменную "name"<br>
+  var getName = function() {<br>
+    &nbsp; return name;          &nbsp;&nbsp;   // Вложенная функция имеет доступ к "name" внешней функции<br>
+  }<br>
+  &nbsp;return getName;          &nbsp;&nbsp;  // Возвращаем вложенную<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//функцию, тем самым сохраняя доступ<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// к ней для другого scope<br>
+}<br>
+myPet = pet('Vivie');<br>
+
+myPet();              &nbsp;&nbsp;       // Возвращается "Vivie",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                      // т.к. даже после выполнения внешней функции<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;              // name сохранился для вложенной функции
+      </code>
+<p>Более сложный пример представлен ниже. Объект с методами для манипуляции вложенной функции внешней функцией можно вернуть (<i>return</i>).</p>
+<code class="code-piece">
+  var createPet = function (name) {<br>
+    &nbsp; var sex;<br>
+    <br>
+    &nbsp; return {<br>
+      &nbsp;&nbsp; setName: function (newName) {<br>
+        &nbsp;&nbsp;&nbsp;   name = newName;<br>
+        &nbsp;&nbsp;    },<br>
+      <br>
+      &nbsp;&nbsp;   getName: function () {<br>
+        &nbsp;&nbsp;&nbsp;     return name;<br>
+        &nbsp;&nbsp;   },<br>
+      <br>
+      &nbsp;&nbsp;   getSex: function () {<br>
+        &nbsp;&nbsp;&nbsp;     return sex;<br>
+        &nbsp;&nbsp;    },<br>
+      <br>
+      &nbsp;&nbsp;    setSex: function (newSex) {<br>
+        &nbsp;&nbsp;&nbsp;      if (<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;       typeof newSex === "string" &&<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;       (newSex.toLowerCase() === "male" || newSex.toLowerCase() === "female")<br>
+        &nbsp;&nbsp;&nbsp;     ) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;       sex = newSex;<br>
+          &nbsp;&nbsp;&nbsp;     }<br>
+          &nbsp;&nbsp;    },<br>
+          &nbsp;  };<br>
+  };<br>
+  <br>
+  var pet = createPet("Vivie");<br>
+  pet.getName(); // Vivie<br>
+  <br>
+  pet.setName("Oliver");<br>
+  pet.setSex("male");<br>
+  pet.getSex(); // male<br>
+  pet.getName(); // Oliver
+</code>
+<p>В коде выше переменная <code>name</code> внешней функции доступна для вложенной функции, и нет другого способа доступа к вложенным переменным кроме как через вложенную функцию. Вложенные переменные вложенной функции являются безопасными хранилищами для внешних аргументов и переменных. Они содержат "постоянные" и "инкапсулированные" данные для работы с ними вложенными функциями. Функции даже не должны присваиваться переменной или иметь имя.</p>
+  <code class="code-piece">
+    var getCode = (function () {<br>
+      &nbsp;  var apiCode = "0]Eal(eh&2"; // Мы не хотим,<br> чтобы данный код мог быть изменен кем-то<br> извне...<br>
+      <br>
+      &nbsp;  return function () {<br>
+        &nbsp;  &nbsp;    return apiCode;<br>
+        &nbsp;  };<br>
+    })();<br>
+    <br>
+    getCode(); // Возвращает apiCode
+  </code>
+  <p>Однако есть ряд подводных камней, которые следует учитывать при использовании замыканий. Если закрытая функция определяет переменную с тем же именем, что и имя переменной во внешней области, нет способа снова ссылаться на переменную во внешней области.</p>
+  <code class="code-piece">
+    var createPet = function (name) {<br>
+      &nbsp;  // Внешняя функция определяет переменную с именем <br>"name".<br>
+      &nbsp;  return {<br>
+        &nbsp;&nbsp;   setName: function (name) {<br>
+          &nbsp;&nbsp;&nbsp;     // Внутренняя функция также определяет переменную с<br> именем "name".<br>
+          &nbsp;&nbsp;&nbsp;    name = name; // Как мы можем получить доступ к<br> "name", определённой во внешней функции?<br>
+          &nbsp;&nbsp;      },<br>
+          &nbsp;   };<br>
+    };
+  </code>
+    </section>
+    <section class="main-section" id="Использование_объекта_arguments">
+      <header id="arguments_usage">
+        <h2>Использование объекта arguments</h2>
+      </header>
+      <p>Объект arguments функции является псевдо-массивом. Внутри функции вы можете ссылаться к аргументам следующим образом:</p>
+      <code class="code-piece">
+        arguments[i];
+      </code>
+      <p>где <code>i</code> — это порядковый номер аргумента, отсчитывающийся с 0. К первому аргументу, переданному функции, обращаются так <code>arguments[0]</code>. А получить количество всех аргументов — <code>arguments.length</code>.</p>
+      <p>С помощью объекта arguments Вы можете вызвать функцию, передавая в неё больше аргументов, чем формально объявили принять. Это очень полезно, если вы не знаете точно, сколько аргументов должна принять ваша функция. Вы можете использовать <code>arguments.length</code> для определения количества аргументов, переданных функции, а затем получить доступ к каждому аргументу, используя объект <code>arguments</code>.</p>
+      <p>Для примера рассмотрим функцию, которая конкатенирует несколько строк. Единственным формальным аргументом для функции будет строка, которая указывает символы, которые разделяют элементы для конкатенации. Функция определяется следующим образом:</p>
+      <code class="code-piece">
+        function myConcat(separator) {<br>
+          &nbsp; var result = "";<br>
+          &nbsp;var i;<br>
+          <br>
+          &nbsp;// iterate through arguments<br>
+          &nbsp; for (i = 1; i < arguments.length; i++) {<br>
+            &nbsp;&nbsp;   result += arguments[i] + separator;<br>
+            &nbsp;  }<br>
+            &nbsp;   return result;<br>
+        }
+      </code>
+      <p>Вы можете передавать любое количество аргументов в эту функцию, и он конкатенирует каждый аргумент в одну строку.</p>
+      <code class="code-piece">
+        // возвращает "red, orange, blue, "<br>
+myConcat(", ", "red", "orange", "blue");<br>
+<br>
+// возвращает "elephant; giraffe; lion; cheetah; "<br>
+myConcat("; ", "elephant", "giraffe", "lion", "cheetah");<br>
+<br>
+// возвращает "sage. basil. oregano. pepper. parsley. "<br>
+myConcat(". ", "sage", "basil", "oregano", "pepper", <br>"parsley");
+      </code>
+      <br>
+      <div class="note">
+        <p><b>Примечание</b>: arguments является псевдо-массивом, но не массивом. Это псевдо-массив, в котором есть пронумерованные индексы и свойство length. Однако он не обладает всеми методами массивов.</p>
+      </div>
+    </section>
+    <section class="main-section" id="Параметры_функции">
+      <header id="function_parameters">
+        <h2>Параметры функции</h2>
+      </header>
+      <p>Начиная с ECMAScript 2015 появились два новых вида параметров: параметры по умолчанию (<i>default parameters</i>) и остаточные параметры (<i>rest parameters</i>).</p>
+      <h4>Параметры по умолчанию (Default parameters)</h4>
+      <p>В JavaScript параметры функции по умолчанию имеют значение <code>undefined</code>. Однако в некоторых ситуация может быть полезным поменять значение по умолчанию. В таких случаях default parameters могут быть весьма кстати.</p>
+      <p>В прошлом для этого было необходимо в теле функции проверять значения параметров на <code>undefined</code> и в положительном случае менять это значение на дефолтное (<i>default</i>). В следующем примере в случае, если при вызове не предоставили значение для <code>b</code>, то этим значением станет <code>undefined</code>, тогда результатом вычисления <code>a * b</code> в функции <code>multiply</code> будет <code>NaN</code>. Однако во второй строке мы поймаем это значение:</p>
+      <code class="code-piece">
+        function multiply(a, b) {<br>
+          &nbsp;  b = typeof b !== "undefined" ? b : 1;<br>
+          <br>
+          &nbsp;  return a * b;<br>
+        }<br>
+        <br>
+        multiply(5); // 5
+      </code>
+      <p>С параметрами по умолчанию проверка наличия значения параметра в теле функции не нужна. Теперь вы можете просто указать значение по умолчанию для параметра <code>b</code> в объявлении функции:</p>
+      <code class="code-piece">
+        function multiply(a, b = 1) {<br>
+          <br>
+          &nbsp;  return a * b;<br>
+        }<br>
+        <br>
+        multiply(5); // 5
+      </code>
+      <h4>Остаточные параметры (Rest parameters)</h4>
+      <p>Остаточные параметры предоставляют нам массив неопределённых аргументов. В примере мы используем остаточные параметры, чтобы собрать аргументы с индексами со 2-го до последнего. Затем мы умножим каждый из них на значение первого аргумента. В этом примере используется стрелочная функция (<a href="#arrow-function"><b><i> Arrow functions</i></b></a>), о которой будет рассказано в следующей секции.</p>
+      <code class="code-piece">
+        function multiply(multiplier, ...theArgs) {<br>
+          &nbsp; return theArgs.map((x) => multiplier * x);<br>
+        }<br>
+        <br>
+        var arr = multiply(2, 1, 2, 3);<br>
+        console.log(arr); // [2, 4, 6]
+      </code>
+    </section>
+    <section class="main-section" id="Стрелочные_функции">
+      <header id="arrow_function">
+        <h2>Стрелочные функции</h2>
+      </header>
+      <p>Стрелочные функции — функции вида "arrow function expression" — имеют укороченный синтаксис по сравнению с function expression и лексически связывает значение <code>this</code>. Стрелочные функции всегда анонимны.</p>
+      <p>На введение стрелочных функций повлияли два фактора: более короткие функции и лексика <code>this</code>.</p>
+      <h3>Более короткие функции</h3>
+      <p>В некоторых функциональных паттернах приветствуется использование более коротких функций. Сравните:</p>
+      <code class="code-piece">
+        var a = ["Hydrogen", "Helium", "Lithium", "Beryllium"];<br>
+        <br>
+var a2 = a.map(function (s) {<br>
+  &nbsp; return s.length;<br>
+});<br>
+<br>
+console.log(a2); // выводит [8, 6, 7, 9]<br>
+<br>
+var a3 = a.map((s) => s.length);<br>
+<br>
+console.log(a3); // выводит [8, 6, 7, 9]
+      </code>
+      <h3>Лексика <code>this</code></h3>
+      <p>До стрелочных функций каждая новая функция определяла своё значение <code>this</code> (новый объект в случае конструктора, undefined в strict mode, контекстный объект, если функция вызвана как метод объекта, и т.д.). Это оказалось раздражающим с точки зрения объектно-ориентированного стиля программирования.</p>
+      <code class="code-piece">
+        function Person() {<br>
+          &nbsp; // Конструктор Person() определяет `this` как самого себя.<br>
+          &nbsp; this.age = 0;<br>
+          <br>
+          &nbsp;  setInterval(function growUp() {<br>
+            &nbsp;&nbsp;    // Без strict mode функция growUp() определяет `this`<br>
+            &nbsp;&nbsp;     // как global object, который отличается от `this`<br>
+            &nbsp;&nbsp;    // определённого конструктором Person().<br>
+            &nbsp;&nbsp;     this.age++;<br>
+            &nbsp;     }, 1000);<br>
+        }<br>
+        <br>
+        var p = new Person();
+      </code>
+      <p>В ECMAScript 3/5 эта проблема была исправлена путём присвоения значения <code>this</code> переменной, которую можно было бы замкнуть.</p>
+      <code class="code-piece">
+        function Person() {<br>
+          &nbsp;var self = this; // Некоторые выбирают `that` <br>вместо`self`.<br>
+          &nbsp; // Выберите что-то одно и будьте <br>последовательны.<br>
+          &nbsp; self.age = 0;<br>
+          <br>
+          &nbsp;  setInterval(function growUp() {<br>
+            &nbsp;&nbsp;    // Колбэк ссылается на переменную `self`,<br>
+            &nbsp;&nbsp;   // значением которой является<br>ожидаемый объект.<br>
+            &nbsp;&nbsp;    self.age++;<br>
+            &nbsp;  }, 1000);<br>
+        }
+      </code>
+      <p>Альтернативой может быть связанная функция (<i>bound function</i>), с которой можно правильно вручную определить значение <code>this</code> для функции <code>growUp()</code>.
+
+        В arrow function значением <code>this</code> является окружающий его контекст, так следующий код работает ожидаемо:</p>
+        <code class="code-piece">
+          function Person() {<br>
+            &nbsp;this.age = 0;<br>
+            <br>
+            &nbsp; setInterval(() => {<br>
+              &nbsp; &nbsp;   this.age++; // |this| должным образом <br>ссылается на объект Person<br>
+              &nbsp;   }, 1000);<br>
+          }<br>
+          <br>
+          var p = new Person();
+        </code>
+    </section>
+  </main>
+</body>
+</html>
