@@ -1,0 +1,238 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.root {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $space-3 $space-4;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.label {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+  letter-spacing: $letter-wide;
+}
+
+.hint {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-muted;
+}
+
+// ── Layout ────────────────────────────────────────────────────────────────────
+
+.body {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  min-height: 380px;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+// ── Sidebar ───────────────────────────────────────────────────────────────────
+
+.sidebar {
+  border-right: 1px solid $border-subtle;
+  padding: $space-3 0;
+  overflow-y: auto;
+  max-height: 440px;
+
+  @include mobile {
+    border-right: none;
+    border-bottom: 1px solid $border-subtle;
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-1;
+    padding: $space-2 $space-3;
+    max-height: none;
+  }
+}
+
+.catGroup {
+  margin-bottom: $space-2;
+
+  @include mobile { display: contents; }
+}
+
+.catLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  color: $text-muted;
+  letter-spacing: $letter-wider;
+  padding: $space-1 $space-4;
+  text-transform: uppercase;
+
+  @include mobile { display: none; }
+}
+
+.item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-secondary;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  padding: $space-2 $space-4;
+  cursor: pointer;
+  transition: all $t-fast;
+  line-height: 1.3;
+
+  &:hover { color: $text-primary; background: $bg-elevated; }
+
+  @include mobile {
+    width: auto;
+    border: 1px solid $border-subtle;
+    border-left: 1px solid $border-subtle;
+    border-radius: $radius-sm;
+    padding: $space-1 $space-2;
+    font-size: 11px;
+  }
+}
+
+.itemActive {
+  color: #e0234e;
+  border-left-color: #e0234e;
+  background: rgba(224, 35, 78, 0.05);
+
+  @include mobile {
+    border-color: #e0234e;
+    background: rgba(224, 35, 78, 0.08);
+  }
+}
+
+// ── Panel ─────────────────────────────────────────────────────────────────────
+
+.panel {
+  padding: $space-5;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.decoratorName {
+  font-family: $font-mono;
+  font-size: $text-md;
+  font-weight: 700;
+  color: #e0234e;
+}
+
+.desc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 56ch;
+  margin: 0;
+}
+
+.note {
+  font-size: $text-sm;
+  color: $text-muted;
+  line-height: $line-loose;
+  background: $bg-elevated;
+  border-left: 2px solid $border-default;
+  padding: $space-2 $space-3;
+  border-radius: 0 $radius-sm $radius-sm 0;
+  font-family: $font-mono;
+}
+
+// ── Examples ──────────────────────────────────────────────────────────────────
+
+.examplesRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.exBtn {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-3;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-sm;
+  background: $bg-elevated;
+  cursor: pointer;
+  transition: border-color $t-fast;
+
+  &:hover { border-color: $border-default; }
+}
+
+.exLabel {
+  font-size: 11px;
+  color: $text-muted;
+  font-family: $font-mono;
+  flex-shrink: 0;
+}
+
+.exVal {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-secondary;
+}
+
+// ── Input ─────────────────────────────────────────────────────────────────────
+
+.inputRow {
+  display: flex;
+  gap: $space-2;
+}
+
+.input {
+  flex: 1;
+  background: $bg-base;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-sm;
+  padding: $space-2 $space-3;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-primary;
+
+  &:focus { outline: none; border-color: #e0234e; }
+}
+
+.checkBtn {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-inverted;
+  background: #e0234e;
+  border: none;
+  border-radius: $radius-sm;
+  padding: $space-2 $space-4;
+  cursor: pointer;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: opacity $t-fast;
+
+  &:hover { opacity: 0.85; }
+}
+
+// ── Result ────────────────────────────────────────────────────────────────────
+
+.result {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-3 $space-4;
+  border-radius: $radius-sm;
+  font-family: $font-mono;
+  font-size: $text-sm;
+
+  &.ok  { background: $accent-dim;  color: $accent; border: 1px solid rgba(0,229,160,0.25); }
+  &.err { background: $error-dim;   color: $error;  border: 1px solid rgba(255,95,106,0.25); }
+}
+
+.resultIcon { font-weight: 700; flex-shrink: 0; }
+.resultMsg  { line-height: $line-normal; }

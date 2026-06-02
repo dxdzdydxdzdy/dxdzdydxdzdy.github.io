@@ -1,0 +1,142 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.lead {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+.body {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+  em { font-style: normal; color: $text-primary; }
+}
+
+// ── Decorator reference table ─────────────────────────────────────────────────
+
+.decTable {
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+}
+
+.decGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.decGroupTitle {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-muted;
+  letter-spacing: $letter-wider;
+  text-transform: uppercase;
+  padding-bottom: $space-2;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.decRow {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-sm;
+  overflow: hidden;
+  transition: border-color $t-fast;
+
+  &:hover { border-color: $border-default; }
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.decName {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: #e0234e;
+  padding: $space-3 $space-4;
+  background: rgba(224, 35, 78, 0.04);
+  border-right: 1px solid $border-subtle;
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.decDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3 $space-4;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Flow: request lifecycle ───────────────────────────────────────────────────
+
+.flow {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  flex-wrap: wrap;
+  padding: $space-4;
+  background: $bg-surface;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+}
+
+.flowStep {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  padding: $space-2 $space-3;
+  border-radius: $radius-sm;
+  border: 1px solid $border-subtle;
+  background: $bg-elevated;
+  color: $text-secondary;
+
+  &.accent { color: #e0234e; border-color: rgba(224,35,78,0.3); background: rgba(224,35,78,0.05); }
+  &.ok     { color: $accent; border-color: rgba(0,229,160,0.3);  background: $accent-dim; }
+  &.bad    { color: $error;  border-color: rgba(255,95,106,0.3); background: $error-dim; }
+}
+
+.flowArrow { color: $text-muted; font-family: $font-mono; }

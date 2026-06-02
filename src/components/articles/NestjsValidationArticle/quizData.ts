@@ -1,0 +1,203 @@
+import type { QuizQuestion } from '@/components/ui/QuizBlock/QuizBlock';
+
+export const QUIZ_QUESTIONS: QuizQuestion[] = [
+  {
+    id: 'v1',
+    difficulty: 'easy',
+    question: 'Какие две библиотеки нужно установить для валидации DTO в NestJS?',
+    options: [
+      'express-validator и joi',
+      'class-validator и class-transformer',
+      'zod и yup',
+      'nestjs-validation и dto-checker',
+    ],
+    correct: 1,
+    explanation: 'class-validator предоставляет декораторы (@IsString, @IsNotEmpty и др.). class-transformer превращает JSON-тело запроса в экземпляр класса DTO чтобы декораторы сработали. Оба нужны.',
+  },
+  {
+    id: 'v2',
+    difficulty: 'easy',
+    question: 'Где подключить ValidationPipe чтобы валидация работала глобально, для всех контроллеров сразу?',
+    options: [
+      'В main.ts через app.useGlobalPipes()',
+      'В каждом контроллере через @UsePipes()',
+      'В providers корневого AppModule',
+      'В nest-cli.json',
+    ],
+    correct: 0,
+    explanation: 'app.useGlobalPipes(new ValidationPipe()) в main.ts — одна строка, и валидация работает для всех запросов. @UsePipes() на каждом контроллере — рабочий, но избыточный вариант.',
+  },
+  {
+    id: 'v3',
+    difficulty: 'easy',
+    question: 'Клиент передал число 123 в поле с декоратором @IsString(). Что вернёт NestJS?',
+    options: [
+      '200 OK — NestJS преобразует число в строку',
+      '400 Bad Request с сообщением об ошибке',
+      '200 OK — значение будет проигнорировано',
+      '500 Internal Server Error',
+    ],
+    correct: 1,
+    explanation: 'ValidationPipe проверит тип — @IsString() не пропустит число. Придёт 400 с массивом message: ["title must be a string"]. Контроллер при этом даже не вызывается.',
+  },
+  {
+    id: 'v4',
+    difficulty: 'easy',
+    question: 'Что делает декоратор @IsNotEmpty()?',
+    options: [
+      'Запрещает передавать поле вообще',
+      'Запрещает передавать null',
+      'Отклоняет пустую строку и строку из одних пробелов',
+      'Проверяет что массив не пустой',
+    ],
+    correct: 2,
+    explanation: '@IsNotEmpty() отклоняет "" и "   ". Для массивов используй @ArrayNotEmpty() — @IsNotEmpty() там не работает.',
+  },
+  {
+    id: 'v5',
+    difficulty: 'easy',
+    question: 'Как передать кастомное сообщение об ошибке в декоратор?',
+    options: [
+      '@IsString("моё сообщение")',
+      '@IsString({ message: "моё сообщение" })',
+      '@IsString(null, "моё сообщение")',
+      'Кастомные сообщения не поддерживаются',
+    ],
+    correct: 1,
+    explanation: 'Декораторы class-validator принимают объект с настройками: { message: "..." }. У @Length и @Matches он идёт после параметров-значений: @Length(2, 40, { message: "..." }).',
+  },
+  {
+    id: 'v6',
+    difficulty: 'medium',
+    question: 'В чём разница между @IsNumber() и @IsInt()?',
+    options: [
+      '@IsNumber() — любые числа, @IsInt() — только целые',
+      '@IsNumber() — только целые, @IsInt() — только дробные',
+      'Они идентичны',
+      '@IsInt() разрешает только положительные числа',
+    ],
+    correct: 0,
+    explanation: '@IsNumber() пропустит 3.14. @IsInt() отклонит — только целые. Для ID, приоритетов, количества — @IsInt(). Для координат, цен с копейками — @IsNumber().',
+  },
+  {
+    id: 'v7',
+    difficulty: 'medium',
+    question: 'Клиент не передал поле помеченное @IsOptional(). Что произойдёт?',
+    options: [
+      'Ошибка — поле описано в DTO, значит обязательно',
+      'Валидация пройдёт без ошибок',
+      'Поле автоматически получит значение null',
+      'Поле удалится из объекта запроса',
+    ],
+    correct: 1,
+    explanation: '@IsOptional() говорит: если поле не передано — пропустить все остальные декораторы на нём. Если передано — они сработают как обычно.',
+  },
+  {
+    id: 'v8',
+    difficulty: 'medium',
+    code: `@IsArray({ message: 'Теги должны быть массивом' })
+@IsEnum(TaskTag, { each: true, message: 'Недопустимое значение тега' })
+tags: TaskTag[];`,
+    question: 'Что означает { each: true } в декораторе @IsEnum?',
+    options: [
+      'Применить декоратор к каждому запросу',
+      'Проверить каждый элемент массива по отдельности',
+      'Проверить что массив содержит все значения enum',
+      'Разрешить несколько значений enum',
+    ],
+    correct: 1,
+    explanation: '{ each: true } говорит class-validator проверить каждый элемент массива отдельно. Без него декоратор проверяет весь массив как одно значение — и пропустит посторонние значения внутри.',
+  },
+  {
+    id: 'v9',
+    difficulty: 'medium',
+    question: 'В запросе нарушено сразу несколько правил валидации. Что вернёт ValidationPipe?',
+    options: [
+      'Только первую найденную ошибку',
+      'Массив message со всеми нарушениями',
+      'Ошибки по одной на каждый повторный запрос',
+      '500 Internal Server Error',
+    ],
+    correct: 1,
+    explanation: 'ValidationPipe проверяет все поля и все декораторы за один проход. Клиент получает сразу весь список ошибок — не нужно отправлять запрос по несколько раз.',
+  },
+  {
+    id: 'v10',
+    difficulty: 'medium',
+    question: 'Декоратор @Length(2, 40) — это сокращение для:',
+    options: [
+      '@MinLength(2) + @MaxLength(40)',
+      '@IsString() + @IsNotEmpty()',
+      '@Min(2) + @Max(40)',
+      '@IsLength({ min: 2, max: 40 })',
+    ],
+    correct: 0,
+    explanation: '@Length(min, max) объединяет @MinLength() и @MaxLength() в один декоратор. @Min и @Max — это для чисел, не для строк.',
+  },
+  {
+    id: 'v11',
+    difficulty: 'medium',
+    question: 'Зачем ValidationPipe нужен class-transformer, если проверки делает class-validator?',
+    options: [
+      'class-transformer не нужен — достаточно class-validator',
+      'Он добавляет поддержку @IsUrl и @IsUUID',
+      'Он создаёт экземпляр DTO-класса из JSON-тела запроса',
+      'Без него нельзя использовать глобальный pipe',
+    ],
+    correct: 2,
+    explanation: 'Декораторы class-validator работают только на экземплярах классов. JSON-тело запроса — просто объект. class-transformer превращает его в new CreateTaskDto() чтобы декораторы нашли поля.',
+  },
+  {
+    id: 'v12',
+    difficulty: 'hard',
+    code: `@IsString({ message: 'Пароль должен быть строкой' })
+@MinLength(6, { message: 'Минимум 6 символов' })
+@Matches(/^(?=.*[A-Z])(?=.*[0-9]).+$/, {
+  message: 'Нужна заглавная буква и цифра',
+})
+password: string;`,
+    question: 'Какие ошибки придут если отправить password: "abc"?',
+    options: [
+      'Только "Минимум 6 символов"',
+      'Только "Нужна заглавная буква и цифра"',
+      'Обе: "Минимум 6 символов" и "Нужна заглавная буква и цифра"',
+      'Ни одной — "abc" пройдёт валидацию',
+    ],
+    correct: 2,
+    explanation: '"abc" нарушает сразу два правила: длина 3 (меньше 6) и нет заглавной + цифры. ValidationPipe собирает все ошибки и возвращает их одновременно.',
+  },
+  {
+    id: 'v13',
+    difficulty: 'hard',
+    question: 'Какой HTTP-статус возвращает ValidationPipe при ошибке валидации?',
+    options: ['422 Unprocessable Entity', '400 Bad Request', '403 Forbidden', '500 Internal Server Error'],
+    correct: 1,
+    explanation: 'ValidationPipe бросает BadRequestException → 400 Bad Request. Тело: { statusCode: 400, message: [...], error: "Bad Request" }.',
+  },
+  {
+    id: 'v14',
+    difficulty: 'hard',
+    question: 'В @IsUrl({ host_whitelist: ["google.com"] }) передали "https://youtube.com". Что произойдёт?',
+    options: [
+      'Пройдёт — whitelist не ограничивает домены',
+      'Ошибка — только домены из whitelist разрешены',
+      'URL будет заменён на google.com',
+      'Поле станет undefined',
+    ],
+    correct: 1,
+    explanation: 'host_whitelist — белый список: пройдут только указанные домены. host_blacklist — обратное: все кроме указанных. youtube.com не в whitelist → ошибка.',
+  },
+  {
+    id: 'v15',
+    difficulty: 'hard',
+    question: 'Поле: @IsOptional() + @IsString(). Клиент передал его значением 123 (число). Результат?',
+    options: [
+      'Ошибка "must be a string"',
+      'Ошибок нет — @IsOptional() всё отключает',
+      'Число автоматически приводится к строке',
+      'Ошибка 500 — конфликт декораторов',
+    ],
+    correct: 0,
+    explanation: '@IsOptional() пропускает валидацию только если поле не передано. Если передано (пусть и числом) — @IsString() сработает и вернёт ошибку.',
+  },
+];

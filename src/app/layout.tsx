@@ -5,6 +5,7 @@ import { ServiceWorker } from '@/components/ServiceWorker';
 import '@/styles/globals.scss';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://dxdzdydxdzdy.github.io'),
   title: { default: 'dxlearn', template: '%s — dxlearn' },
   description: 'Интерактивные курсы по веб-разработке',
   verification: {

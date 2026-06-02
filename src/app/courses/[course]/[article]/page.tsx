@@ -64,6 +64,7 @@ import { ComponentsPropsArticle } from '@/components/articles/ComponentsPropsArt
 import { NestjsIntroArticle } from '@/components/articles/NestjsIntroArticle/NestjsIntroArticle';
 import { NestjsRestArticle } from '@/components/articles/NestjsRestArticle/NestjsRestArticle';
 import { NestjsCrudArticle } from '@/components/articles/NestjsCrudArticle/NestjsCrudArticle';
+import { NestjsValidationArticle } from '@/components/articles/NestjsValidationArticle/NestjsValidationArticle';
 import { PlaceholderArticle } from '@/components/articles/PlaceholderArticle/PlaceholderArticle';
 import { RelatedArticles } from '@/components/ui/RelatedArticles/RelatedArticles';
 import { TableOfContents } from '@/components/ui/TableOfContents/TableOfContents';
@@ -159,7 +160,8 @@ export default async function ArticlePage({ params }: Props) {
     if (cSlug === 'react' && aSlug === 'components-props') return <ComponentsPropsArticle />;
     if (cSlug === 'nestjs' && aSlug === 'nestjs-intro') return <NestjsIntroArticle />;
     if (cSlug === 'nestjs' && aSlug === 'nestjs-rest')  return <NestjsRestArticle />;
-    if (cSlug === 'nestjs' && aSlug === 'nestjs-crud')  return <NestjsCrudArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-crud')       return <NestjsCrudArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-validation') return <NestjsValidationArticle />;
     return <PlaceholderArticle title={article!.title} />;
   }
 
