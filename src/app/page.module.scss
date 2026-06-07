@@ -31,7 +31,6 @@
   }
 }
 
-// Subtle dot-grid noise (pure CSS, no images)
 .heroNoise {
   position: absolute;
   inset: 0;
@@ -64,7 +63,6 @@
   flex-shrink: 0;
   box-shadow: 0 0 8px $accent-glow;
 
-  // Slow pulse
   animation: pulse 3s ease-in-out infinite;
 }
 

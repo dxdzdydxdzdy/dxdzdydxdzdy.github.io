@@ -285,7 +285,8 @@ export const courses: Course[] = [
       a('nestjs-intro',       'Введение и первый запуск',                   'Устанавливаем Nest CLI, создаём приложение, разбираем структуру файлов и запускаем первый сервер.',                    ['nestjs', 'basics'],       true),
       a('nestjs-rest',        'REST-декораторы, DTO и обработка ошибок',    'GET, POST, @Param, @Body — работаем с HTTP-запросами. DTO как контракт данных. NotFoundException.',                   ['nestjs', 'rest', 'dto'],  true),
       a('nestjs-crud',        'PUT, PATCH и DELETE — полный CRUD',           'Полное и частичное обновление ресурса, удаление. Partial<T>, Object.assign и когда что применять.',                        ['nestjs', 'rest', 'crud'],       true),
-      a('nestjs-validation',  'Валидация через DTO',                         'class-validator и ValidationPipe — строки, числа, enum, URL, UUID. Кастомные сообщения и все декораторы с интерактивным тестером.', ['nestjs', 'dto', 'validation'],  true),
+      a('nestjs-validation',       'Валидация через DTO',                  'class-validator и ValidationPipe — строки, числа, enum, URL, UUID. Кастомные сообщения и все декораторы с интерактивным тестером.', ['nestjs', 'dto', 'validation'],        true),
+      a('nestjs-custom-validators', 'Кастомный декоратор для валидации',   'registerDecorator, ValidatorConstraint, ValidationArguments — пишем свои правила: параметры, кросс-полевые проверки, async.',       ['nestjs', 'dto', 'validation', 'decorators'], true),
     ]),
 
   ]),

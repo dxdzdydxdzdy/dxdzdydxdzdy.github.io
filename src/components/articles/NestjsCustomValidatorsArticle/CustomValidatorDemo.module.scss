@@ -1,0 +1,171 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.root {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.topBar {
+  padding: $space-3 $space-4;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.label {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+  letter-spacing: $letter-wide;
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid $border-subtle;
+  overflow-x: auto;
+}
+
+.tab {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: $space-3 $space-4;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all $t-fast;
+  margin-bottom: -1px;
+
+  &:hover { color: $text-secondary; }
+}
+
+.tabActive {
+  color: #e0234e;
+  border-bottom-color: #e0234e;
+}
+
+// ── Body ─────────────────────────────────────────────────────────────────────
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+
+  @include tablet { grid-template-columns: 1fr; }
+}
+
+// ── Code pane ────────────────────────────────────────────────────────────────
+
+.codePane {
+  border-right: 1px solid $border-subtle;
+  overflow: auto;
+
+  @include tablet { border-right: none; border-bottom: 1px solid $border-subtle; }
+
+  // override CodeHighlight inner padding
+  > * { margin: 0; border: none; border-radius: 0; }
+}
+
+// ── Try pane ─────────────────────────────────────────────────────────────────
+
+.tryPane {
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.tryLabel {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-muted;
+  letter-spacing: $letter-wider;
+}
+
+.tryDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  margin: 0;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.fieldLabel {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+}
+
+.paramBadge {
+  font-size: 10px;
+  color: $warn;
+  background: $warn-dim;
+  border: 1px solid rgba(240,192,64,0.2);
+  border-radius: $radius-sm;
+  padding: 0 $space-2;
+  letter-spacing: $letter-wide;
+}
+
+.input {
+  background: $bg-base;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-sm;
+  padding: $space-2 $space-3;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-primary;
+  width: 100%;
+
+  &:focus { outline: none; border-color: #e0234e; }
+}
+
+.runBtn {
+  align-self: flex-start;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  font-weight: 700;
+  color: $text-inverted;
+  background: #e0234e;
+  border: none;
+  border-radius: $radius-sm;
+  padding: $space-2 $space-4;
+  cursor: pointer;
+  transition: opacity $t-fast;
+  margin-top: $space-1;
+
+  &:hover { opacity: 0.85; }
+}
+
+.result {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+  padding: $space-3;
+  border-radius: $radius-sm;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  line-height: $line-normal;
+
+  &.ok  { background: $accent-dim; color: $accent; border: 1px solid rgba(0,229,160,0.25); }
+  &.err { background: $error-dim;  color: $error;  border: 1px solid rgba(255,95,106,0.25); }
+}
+
+.icon { font-weight: 700; flex-shrink: 0; }
