@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "gh": "^2.8.9",
     "highlight.js": "^11.11.1",
     "lenis": "^1.3.23",
     "next": "16.2.6",
