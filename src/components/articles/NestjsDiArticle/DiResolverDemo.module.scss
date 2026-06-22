@@ -1,0 +1,224 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.root {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+// ── Top bar ────────────────────────────────────────────────────────────────────
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-3 $space-4;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+  gap: $space-4;
+}
+
+.stepTitle {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-primary;
+  font-weight: 600;
+}
+
+.stepCount {
+  font-family: $font-mono;
+  font-size: 10px;
+  color: $text-muted;
+  letter-spacing: $letter-wide;
+  margin-left: $space-2;
+}
+
+.btns {
+  display: flex;
+  gap: $space-2;
+  flex-shrink: 0;
+}
+
+.btn {
+  padding: $space-1 $space-4;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  border-radius: $radius-sm;
+  border: 1px solid $border-subtle;
+  background: $bg-surface;
+  color: $text-secondary;
+  cursor: pointer;
+  transition: color $t-fast, border-color $t-fast, background $t-fast;
+
+  &:hover:not(:disabled) {
+    border-color: $border-default;
+    color: $text-primary;
+    background: $bg-elevated;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  &.primary {
+    border-color: rgba(0, 229, 160, 0.35);
+    color: $accent;
+    &:hover:not(:disabled) { background: rgba(0, 229, 160, 0.08); }
+  }
+}
+
+// ── Graph ─────────────────────────────────────────────────────────────────────
+
+.graph {
+  display: flex;
+  align-items: center;
+  padding: $space-8 $space-6;
+  gap: 0;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+  overflow-x: auto;
+}
+
+.node {
+  flex: 1;
+  min-width: 120px;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  transition: border-color $t-normal, background $t-normal;
+
+  &.idle {
+    border-color: $border-subtle;
+    background: $bg-surface;
+    .nodeName { color: $text-muted; }
+    .nodeBadge { color: $text-muted; background: rgba(255,255,255,0.04); }
+  }
+
+  &.scanning {
+    border-color: rgba(240, 192, 64, 0.5);
+    background: rgba(240, 192, 64, 0.06);
+    .nodeName { color: $warn; }
+    .nodeBadge { color: $warn; background: rgba(240, 192, 64, 0.12); }
+  }
+
+  &.waiting {
+    border-color: rgba(77, 184, 255, 0.5);
+    background: rgba(77, 184, 255, 0.06);
+    .nodeName { color: $info; }
+    .nodeBadge { color: $info; background: rgba(77, 184, 255, 0.12); }
+  }
+
+  &.creating {
+    border-color: rgba(224, 35, 78, 0.5);
+    background: rgba(224, 35, 78, 0.06);
+    .nodeName { color: #e0234e; }
+    .nodeBadge { color: #e0234e; background: rgba(224, 35, 78, 0.12); }
+  }
+
+  &.ready {
+    border-color: rgba(0, 229, 160, 0.5);
+    background: rgba(0, 229, 160, 0.06);
+    .nodeName { color: $accent; }
+    .nodeBadge { color: $accent; background: rgba(0, 229, 160, 0.12); }
+  }
+}
+
+.nodeName {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  font-weight: 600;
+  margin-bottom: $space-1;
+}
+
+.nodeBadge {
+  font-family: $font-mono;
+  font-size: 10px;
+  padding: 1px $space-2;
+  border-radius: $radius-sm;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.arrow {
+  padding: 0 $space-3;
+  font-size: 18px;
+  color: $text-muted;
+  flex-shrink: 0;
+  transition: color $t-normal;
+
+  &.active { color: $accent; }
+}
+
+// ── Info panel ─────────────────────────────────────────────────────────────────
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: none;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.desc {
+  padding: $space-4;
+  border-right: 1px solid $border-subtle;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+
+  strong { color: $text-primary; font-weight: 600; }
+}
+
+.codeWrap {
+  overflow-x: auto;
+  padding: $space-4;
+}
+
+.code {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 12px;
+  line-height: 1.65;
+  color: $text-secondary;
+  white-space: pre;
+
+  .ok   { color: $accent; }
+  .dim  { color: $text-muted; }
+  .hl   { color: #e0234e; }
+}
+
+// ── Progress dots ──────────────────────────────────────────────────────────────
+
+.dots {
+  display: flex;
+  gap: $space-2;
+  padding: $space-3 $space-4;
+  align-items: center;
+  background: $bg-elevated;
+  border-top: 1px solid $border-subtle;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: $border-default;
+  transition: background $t-fast;
+
+  &.current { background: $accent; }
+  &.done    { background: rgba(0, 229, 160, 0.4); }
+}

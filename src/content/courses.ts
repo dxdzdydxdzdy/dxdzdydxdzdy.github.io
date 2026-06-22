@@ -287,6 +287,9 @@ export const courses: Course[] = [
       a('nestjs-crud',        'PUT, PATCH и DELETE — полный CRUD',           'Полное и частичное обновление ресурса, удаление. Partial<T>, Object.assign и когда что применять.',                        ['nestjs', 'rest', 'crud'],       true),
       a('nestjs-validation',       'Валидация через DTO',                  'class-validator и ValidationPipe — строки, числа, enum, URL, UUID. Кастомные сообщения и все декораторы с интерактивным тестером.', ['nestjs', 'dto', 'validation'],        true),
       a('nestjs-custom-validators', 'Кастомный декоратор для валидации',   'registerDecorator, ValidatorConstraint, ValidationArguments — пишем свои правила: параметры, кросс-полевые проверки, async.',       ['nestjs', 'dto', 'validation', 'decorators'], true),
+      a('nestjs-modules',           'Декоратор @Module и связи между модулями', 'controllers, providers, exports, imports — как работает инкапсуляция NestJS. Импорт сервисов между модулями, @Global() и когда он нужен.', ['nestjs', 'modules', 'di'], true),
+      a('nestjs-di',                'Dependency Injection',                     'Почему писать new Service() внутри класса — плохая идея. Как NestJS сам создаёт объекты и передаёт их куда надо — и почему это делает код удобнее для тестирования.', ['nestjs', 'di', 'architecture'], true),
+      a('nestjs-controller',        'Декоратор @Controller',                    'Как @Controller задаёт адрес класса, из чего складывается итоговый URL и как глобальный префикс избавляет от дублирования. Интерактивный сборщик URL.', ['nestjs', 'rest', 'routing'], true),
     ]),
 
   ]),

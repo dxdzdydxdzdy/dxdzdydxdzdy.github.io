@@ -1,0 +1,130 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.root {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid $border-subtle;
+  background: $bg-elevated;
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.tab {
+  padding: $space-3 $space-5;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+  background: none;
+  border: none;
+  border-right: 1px solid $border-subtle;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color $t-fast, background $t-fast;
+
+  &:last-child { border-right: none; }
+  &:hover { color: $text-primary; background: $bg-surface; }
+
+  &.active {
+    color: #e0234e;
+    background: $bg-surface;
+    border-bottom: 2px solid #e0234e;
+  }
+
+  &.ok.active  { color: $accent; border-bottom-color: $accent; }
+  &.err.active { color: $error;  border-bottom-color: $error; }
+}
+
+// ── Body ──────────────────────────────────────────────────────────────────────
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.panel {
+  border-right: 1px solid $border-subtle;
+  &:last-child { border-right: none; }
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.panelLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $text-muted;
+  padding: $space-2 $space-4;
+  border-bottom: 1px solid $border-subtle;
+  background: $bg-elevated;
+}
+
+.codeScroll {
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: $space-4;
+  min-height: 180px;
+}
+
+.code {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 12px;
+  line-height: 1.65;
+  color: $text-secondary;
+  white-space: pre-wrap;
+  word-break: break-all;
+
+  .highlight { color: #e0234e; }
+  .ok        { color: $accent; }
+  .dim       { color: $text-muted; }
+}
+
+// ── Status bar ────────────────────────────────────────────────────────────────
+
+.status {
+  padding: $space-3 $space-4;
+  border-top: 1px solid $border-subtle;
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  font-size: $text-sm;
+  line-height: $line-normal;
+}
+
+.statusOk {
+  background: rgba(0, 229, 160, 0.06);
+  color: $accent;
+
+  .statusIcon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .statusText { color: $text-secondary; }
+  .statusText strong { color: $accent; }
+  code {
+    color: $accent;
+    background: rgba(0, 229, 160, 0.12);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+.statusErr {
+  background: rgba(255, 90, 90, 0.06);
+  color: $error;
+
+  .statusIcon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .statusText { color: $text-secondary; font-family: $font-mono; font-size: 11px; }
+}

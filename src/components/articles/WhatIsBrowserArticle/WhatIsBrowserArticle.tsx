@@ -2,72 +2,135 @@ import { SectionTitle } from '@/components/ui/ArticleSection/ArticleSection';
 import { CodeHighlight } from '@/components/ui/CodeHighlight/CodeHighlight';
 import { Callout } from '@/components/ui/Callout/Callout';
 import { QuizBlock } from '@/components/ui/QuizBlock/QuizBlock';
-import { ProcessArchitectureDemo } from './ProcessArchitectureDemo';
+import { URLAnatomyDemo } from './URLAnatomyDemo';
+import { URLJourneyDemo } from './URLJourneyDemo';
 import { QUIZ_QUESTIONS } from './quizData';
 import s from './WhatIsBrowserArticle.module.scss';
 
 const HISTORY = [
-  { year: '1990', name: 'WorldWideWeb', desc: 'Первый браузер Тима Бернерса-Ли — текстовый, только NeXT. Также мог редактировать страницы.' },
-  { year: '1993', name: 'Mosaic', desc: 'NCSA Mosaic — первый браузер с поддержкой изображений inline. Сделал веб визуальным. Создан студентом Марком Андрессеном.' },
-  { year: '1994', name: 'Netscape Navigator', desc: 'Andreessen уходит из NCSA и создаёт Netscape. Доминировал 80%+ рынка. Ввёл cookies, JavaScript (1995, Brendan Eich за 10 дней), SSL.' },
-  { year: '1995', name: 'Internet Explorer', desc: 'Microsoft входит в игру — Browser Wars I. IE 3.0 поддерживал CSS, ActiveX, JScript (клон JS). К 2002 году — 96% рынка, Netscape умер.' },
-  { year: '2003', name: 'Safari + WebKit', desc: 'Apple форкает KHTML (KDE) → WebKit. Safari становится браузером macOS. WebKit — rendering engine для iOS по сей день.' },
-  { year: '2004', name: 'Firefox + Gecko', desc: 'Mozilla (наследник Netscape) выпускает Firefox. Gecko engine. За год — 100M загрузок. Вернул конкуренцию в рынок.' },
-  { year: '2008', name: 'Chrome + V8', desc: 'Google выпускает Chrome с V8 (JIT-компилятор JS) и многопроцессной архитектурой. Каждая вкладка = отдельный процесс. Полностью меняет ожидания по скорости JS.' },
-  { year: '2013', name: 'Blink', desc: 'Google форкает WebKit → Blink (rendering engine Chrome). Opera, Samsung, Vivaldi, Brave — все переходят на Blink. WebKit остаётся только у Safari.' },
-  { year: '2015', name: 'Edge (EdgeHTML)', desc: 'Microsoft убивает IE, выпускает Edge на EdgeHTML. Попытка с нуля — но слишком мало сайтов тестировалось под EdgeHTML.' },
-  { year: '2020', name: 'Edge Chromium', desc: 'Microsoft капитулирует: Edge переписывается на Chromium/Blink. Остаётся три реальных движка: Blink, WebKit, Gecko.' },
-];
-
-const ENGINES = [
-  { browser: 'Chrome / Edge / Opera / Brave', render: 'Blink', renderColor: '#4db8ff', js: 'V8', jsColor: '#00e5a0' },
-  { browser: 'Firefox', render: 'Gecko', renderColor: '#f0c040', js: 'SpiderMonkey', jsColor: '#f0c040' },
-  { browser: 'Safari / WebView iOS', render: 'WebKit', renderColor: '#b48eff', js: 'JavaScriptCore', jsColor: '#b48eff' },
+  {
+    year: '1990',
+    name: 'WorldWideWeb',
+    desc: 'Первый браузер — создал сам Тим Бернерс-Ли. Показывал только текст и некоторые изображения. Позже переименован в Nexus.',
+  },
+  {
+    year: '1993',
+    name: 'Mosaic',
+    desc: 'Первый широко распространённый браузер с открытым кодом. Создан студентом Марком Андрессеном. Сделал веб визуальным.',
+  },
+  {
+    year: '1994',
+    name: 'Netscape Navigator',
+    desc: 'Андрессен уходит из NCSA и создаёт Netscape — браузер с исправленными недостатками и поддержкой разных ОС. Быстро захватил 80% рынка.',
+  },
+  {
+    year: '1994',
+    name: 'Консорциум W3C',
+    desc: 'CERN и MIT подписали соглашение об основании W3C. Задача — стандартизировать HTML. Без этого каждый браузер жил бы по своим правилам.',
+  },
+  {
+    year: '1995',
+    name: 'Internet Explorer',
+    desc: 'Microsoft создаёт IE на основе кода Mosaic и предустанавливает его в Windows. К 2001 году — 96% рынка. Монополия остановила развитие веба на годы.',
+  },
+  {
+    year: '2004',
+    name: 'Firefox',
+    desc: 'Mozilla (наследник Netscape) выпускает Firefox. За год — 100 млн загрузок. Конкуренция вернулась на рынок.',
+  },
+  {
+    year: '2007',
+    name: 'Safari',
+    desc: 'Apple выпускает Safari. По сей день — единственный браузер на iOS: Apple требует использовать WebKit на всех iPhone.',
+  },
+  {
+    year: '2008',
+    name: 'Chrome',
+    desc: 'Google выпускает Chrome с быстрым движком V8. Меняет ожидания по скорости JavaScript. Постепенно становится лидером рынка.',
+  },
+  {
+    year: '2015',
+    name: 'Edge',
+    desc: 'Microsoft закрывает IE и выпускает Edge. В 2020 году переписывает его на движке Chromium — том же, что у Chrome.',
+  },
 ];
 
 export function WhatIsBrowserArticle() {
   return (
     <div className={s.article}>
 
-      {/* ── 1. Что такое браузер ─────────────────────────────────────────────── */}
+      {/* ── 1. Как всё начиналось ────────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Браузер — это не просто «программа для сайтов»</SectionTitle>
+        <SectionTitle>Как всё начиналось</SectionTitle>
         <p className={s.lead}>
-          Браузер — один из самых сложных кусков software, который большинство людей использует каждый день.
-          Внутри — компилятор (JS-движок), layout-движок, сетевой стек, менеджер процессов,
-          криптографическая библиотека, sandbox, GPU-рендерер и ещё несколько операционных систем в миниатюре.
+          1989 год, Швейцария. Тим Бернерс-Ли — сотрудник ядерного исследовательского центра CERN.
+          Учёные из разных стран работали вместе, но обмен документами был неудобным.
+          Тим предложил решение: система электронных документов, связанных между собой ссылками.
         </p>
         <p className={s.body}>
-          Формально браузер — это <strong>userspace-приложение</strong>, которое принимает URL,
-          загружает ресурсы по сети и превращает HTML + CSS + JS в пиксели на экране.
-          Но это как назвать компилятор «программой, которая переводит текст в байты» — технически верно,
-          но совершенно не передаёт масштаб задачи.
+          Идея была в том, чтобы обернуть текст специальными словами-ключами,
+          по которым программа поймёт — этот кусок нужно показать жирным, этот крупным,
+          а этот сделать ссылкой на другой документ.
+          Такие обёртки назвали <strong>тегами</strong>.
         </p>
-        <div className={s.statGrid}>
-          {[
-            { value: '~35M', label: 'строк кода в Chromium (больше, чем ядро Linux × 10)' },
-            { value: '~1000', label: 'инженеров в команде Chrome full-time' },
-            { value: '3', label: 'живых rendering engine в 2025: Blink, WebKit, Gecko' },
-          ].map(stat => (
-            <div key={stat.value} className={s.statCard}>
-              <div className={s.statValue}>{stat.value}</div>
-              <div className={s.statLabel}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        <p className={s.body}>
+          Язык из этих тегов получил название <strong>HTML</strong> —
+          HyperText Markup Language, язык гипертекстовой разметки.
+          Документы получили расширения <code>.htm</code> и <code>.html</code>.
+          Первая версия языка содержала всего 18 тегов.
+        </p>
+        <CodeHighlight lang="html" code={`<!-- Тег оборачивает текст и говорит браузеру как его показать -->
+
+<h1>Большой заголовок</h1>
+<p>Обычный абзац текста.</p>
+<b>Жирный текст</b>
+<a href="other-doc.html">Ссылка на другой документ</a>
+
+<!-- Без браузера это просто текст с угловыми скобками.
+     Браузер читает теги и показывает форматирование. -->`} />
       </section>
 
-      {/* ── 2. История ───────────────────────────────────────────────────────── */}
+      {/* ── 2. Зачем нужен браузер ──────────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>История: от текстового редактора до OS внутри OS</SectionTitle>
+        <SectionTitle>Зачем нужен браузер</SectionTitle>
+        <p className={s.lead}>
+          HTML-документ с тегами — это просто текст. Чтобы теги не были видны,
+          а вместо них отображалось форматирование, нужна специальная программа.
+          Такую программу назвали <strong>браузером</strong>.
+        </p>
         <p className={s.body}>
-          За 30 лет браузеры прошли путь от инструмента для учёных CERN до платформы,
-          на которой работают офисные приложения, игры и IDE. Каждый переломный момент
-          двигал не технологию — а рынок.
+          Браузер читает HTML-теги и показывает результат: вместо{' '}
+          <code>&lt;h1&gt;</code> — большой заголовок, вместо{' '}
+          <code>&lt;b&gt;</code> — жирный текст, вместо{' '}
+          <code>&lt;a&gt;</code> — кликабельную ссылку, вместо{' '}
+          <code>&lt;img&gt;</code> — картинку.
+        </p>
+        <p className={s.body}>
+          Первый браузер появился в 1990 году — его создал сам Тим Бернерс-Ли.
+          Назывался <strong>WorldWideWeb</strong>, позже переименован в Nexus.
+          Умел показывать только текст и некоторые изображения.
+          Но для старта того интернета, который мы знаем сейчас, этого было достаточно.
+        </p>
+        <Callout variant="accent">
+          Тим Бернерс-Ли в одиночку придумал всё сразу: HTML (язык разметки),
+          браузер (программу для просмотра), HTTP (протокол передачи данных)
+          и URL (формат адресов). В 1994 году он основал консорциум W3C —
+          организацию по стандартизации веба, которая работает по сей день.
+        </Callout>
+      </section>
+
+      {/* ── 3. История браузеров ─────────────────────────────────────────────── */}
+      <section className={s.section}>
+        <SectionTitle>История: от Nexus до Chrome</SectionTitle>
+        <p className={s.body}>
+          Идею быстро подхватили крупные компании — каждая пыталась занять лидерство
+          и реализовала собственный набор HTML-тегов. Это означало: страница,
+          написанная под один браузер, некорректно отображалась в другом.
+          Консорциум W3C появился именно для того, чтобы этого не произошло.
         </p>
         <div className={s.timeline}>
           {HISTORY.map(item => (
-            <div key={item.year} className={s.timelineItem}>
+            <div key={item.year + item.name} className={s.timelineItem}>
               <div className={s.timelineYear}>{item.year}</div>
               <div className={s.timelineBody}>
                 <div className={s.timelineName}>{item.name}</div>
@@ -77,208 +140,82 @@ export function WhatIsBrowserArticle() {
           ))}
         </div>
         <div className={s.callout}>
-          <div className={s.calloutLabel}>BROWSER WARS В ДВУХ СЛОВАХ</div>
+          <div className={s.calloutLabel}>ВОЙНЫ БРАУЗЕРОВ — КРАТКО</div>
           <div className={s.calloutText}>
-            Войны браузеров шли дважды. Первая (1995–2001): Netscape vs IE — Microsoft выиграл монополией Windows.
-            Вторая (2008–2020): Chrome vs все — Google выиграл скоростью V8 и маркетингом Google.com.
-            Монополии опасны: в эпоху IE-доминирования веб застрял на 6 лет без новых стандартов.
+            Войны шли дважды. Первая (1995–2001): Netscape против IE — Microsoft победил,
+            просто предустановив IE в Windows. Netscape умер. Вторая (2008–2020): Chrome против всех —
+            Google победил скоростью и маркетингом через Google.com.
+            Монополии вредят: когда IE занимал 96% рынка, веб годами стоял без новых стандартов.
           </div>
         </div>
       </section>
 
-      {/* ── 3. Два движка ────────────────────────────────────────────────────── */}
+      {/* ── 4. Где хранятся сайты ───────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Два движка внутри каждого браузера</SectionTitle>
+        <SectionTitle>Где хранятся сайты</SectionTitle>
         <p className={s.lead}>
-          В современном браузере всегда два разных движка, решающих принципиально разные задачи.
-          Их часто путают, называя оба «движком».
+          Браузер умеет отображать HTML. Но где хранятся сами файлы с HTML?
         </p>
-        <div className={s.engineTable}>
-          <div className={s.engineHead}>
-            <span>Браузер</span>
-            <span>Rendering engine</span>
-            <span>JavaScript engine</span>
+        <p className={s.body}>
+          На <strong>веб-серверах</strong> — это мощные компьютеры, подключённые к интернету
+          круглосуточно. Их миллионы по всему миру. У каждого есть числовой адрес — IP.
+          Именно к одному из них и обращается твой браузер, когда ты открываешь сайт.
+        </p>
+        <p className={s.body}>
+          Чтобы браузер и сервер понимали друг друга, им нужен общий язык — <strong>протокол</strong>.
+          Его тоже придумал Тим Бернерс-Ли и назвал <strong>HTTP</strong>
+          (HyperText Transfer Protocol — протокол передачи гипертекста).
+        </p>
+        <div className={s.twoCols}>
+          <div className={s.colCard}>
+            <div className={s.colTitle}>// браузер → серверу</div>
+            <ul className={s.colList}>
+              <li className={s.colItemOk}>Дай мне страницу /courses/html</li>
+              <li className={s.colItemOk}>Мой язык: русский</li>
+              <li className={s.colItemOk}>Я — Chrome 125 на Windows</li>
+            </ul>
           </div>
-          {ENGINES.map(row => (
-            <div key={row.browser} className={s.engineRow}>
-              <div className={s.engineCell}>{row.browser}</div>
-              <div className={s.engineCell}>
-                <span className={s.engineBadge} style={{ color: row.renderColor, borderColor: `${row.renderColor}44`, background: `${row.renderColor}10` }}>
-                  {row.render}
-                </span>
-              </div>
-              <div className={s.engineCell}>
-                <span className={s.engineBadge} style={{ color: row.jsColor, borderColor: `${row.jsColor}44`, background: `${row.jsColor}10` }}>
-                  {row.js}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-        <p className={s.body}>
-          <strong>Rendering engine</strong> (Blink, WebKit, Gecko) — парсит HTML и CSS,
-          строит DOM и CSSOM, вычисляет layout, управляет слоями и отправляет draw-команды в GPU.
-          Это про пиксели.
-        </p>
-        <p className={s.body}>
-          <strong>JS engine</strong> (V8, SpiderMonkey, JavaScriptCore) — парсит и выполняет JavaScript.
-          Оба движка плотно интегрированы: JS может менять DOM (через Blink API),
-          но это две разные кодовые базы с разными командами.
-        </p>
-        <div className={s.infoCard}>
-          <div className={s.infoLabel}>ПОЧЕМУ ЭТО ВАЖНО ТЕБЕ КАК РАЗРАБОТЧИКУ</div>
-          <div className={s.infoText}>
-            <strong>Safari — единственный браузер на iOS.</strong> Apple обязывает все браузеры на iOS
-            использовать WebKit (даже Chrome на iPhone внутри — WebKit). Это значит:
-            если твоя фича работает в Chrome на macOS, но не в Safari — проблема в движке,
-            и 30% мобильных пользователей её не увидят. caniuse.com всегда показывает поддержку по движкам.
+          <div className={s.colCard}>
+            <div className={s.colTitle} style={{ color: '#4db8ff' }}>// сервер → браузеру</div>
+            <ul className={s.colList}>
+              <li className={s.colItemOk}>Статус: 200 OK — нашёл страницу</li>
+              <li className={s.colItemOk}>Тип файла: text/html</li>
+              <li className={s.colItemOk}>Содержимое: &lt;!DOCTYPE html&gt;...</li>
+            </ul>
           </div>
         </div>
-      </section>
-
-      {/* ── 4. V8 под капотом ────────────────────────────────────────────────── */}
-      <section className={s.section}>
-        <SectionTitle>V8: как JavaScript компилируется в машинный код</SectionTitle>
-        <p className={s.lead}>
-          V8 появился в 2008 году и поменял всё. До него JS-движки были интерпретаторами —
-          читали код строчку за строчкой. V8 ввёл JIT (Just-In-Time) компиляцию:
-          горячий код компилируется в нативные инструкции процессора прямо во время выполнения.
-        </p>
-        <div className={s.pipelineRow}>
-          {[
-            { name: 'Parse', sub: 'JS → AST (абстрактное синтаксическое дерево)' },
-            { name: 'Ignition', sub: 'AST → байткод (интерпретируется быстро)' },
-            { name: 'TurboFan', sub: 'Горячий байткод → нативный машинный код' },
-            { name: 'Deopt', sub: 'Тип изменился → откат к байткоду и рекомпиляция' },
-          ].map(step => (
-            <div key={step.name} className={s.pipelineStep}>
-              <div className={s.pipelineStepName}>{step.name}</div>
-              <div className={s.pipelineStepSub}>{step.sub}</div>
-            </div>
-          ))}
-        </div>
-        <CodeHighlight lang="js" code={`// Hidden classes — ключ к скорости V8
-// Объекты с одинаковой структурой → один "hidden class" → быстрый доступ
-
-// ✓ Хорошо: структура не меняется
-function Point(x, y) {
-  this.x = x;  // всегда x, потом y
-  this.y = y;
-}
-const p1 = new Point(1, 2);
-const p2 = new Point(3, 4);
-// p1 и p2 → один hidden class → V8 компилирует в прямой offset к полю
-
-// ✗ Плохо: разный порядок свойств → разные hidden classes
-const a = { x: 1, y: 2 };
-const b = { y: 2, x: 1 };  // другой hidden class!
-// V8 не может применить inline cache → медленнее`} />
         <p className={s.body}>
-          На практике для большинства приложений это не критично — движки достаточно умны.
-          Но знание hidden classes объясняет, <em>почему</em> JIT работает: он делает ставку
-          на стабильность типов и структур. Когда ставка проигрывает (deoptimization) — откатывается к интерпретатору.
+          Если страница существует — сервер вернёт код <strong>200</strong> и HTML.
+          Если нет — <strong>404</strong>. Код <strong>301</strong> — страница переехала.
+          <strong> 500</strong> — что-то сломалось на сервере. Коды от 200 до 599 — это стандартные
+          ответы, которые сервер отправляет браузеру на любой запрос.
         </p>
       </section>
 
-      {/* ── 5. Многопроцессная архитектура ───────────────────────────────────── */}
+      {/* ── 5. Из чего состоит адрес сайта ──────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Многопроцессная архитектура: почему браузер — это ОС</SectionTitle>
-        <p className={s.lead}>
-          До Chrome 2008 все браузеры работали в одном процессе. Crash в Flash на одной вкладке —
-          crash всего браузера. Вредоносный сайт мог читать данные другого открытого сайта.
-          Chrome это сломал.
-        </p>
+        <SectionTitle>Из чего состоит адрес сайта</SectionTitle>
         <p className={s.body}>
-          Современный Chrome при старте запускает <strong>несколько независимых OS-процессов</strong>.
-          Каждый процесс изолирован операционной системой — у них разные адресные пространства памяти.
-          Crash одного не затрагивает других. Кликни на процесс ниже, чтобы увидеть его роль и ограничения.
+          Тим Бернерс-Ли придумал и формат адресов — <strong>URL</strong>.
+          Это не просто набор символов: каждая часть несёт свой смысл.
+          Кликни на любую — узнаешь что она означает:
         </p>
-        <ProcessArchitectureDemo />
-        <Callout variant="warn">
-          Больше процессов = больше памяти. Chrome печально известен потреблением RAM именно из-за этой архитектуры.
-          На слабых устройствах Chrome переключается в «режим экономии» и объединяет вкладки в один процесс.
-          Это компромисс между безопасностью и потреблением ресурсов.
-        </Callout>
+        <URLAnatomyDemo />
+        <p className={s.body}>
+          Большинство частей необязательны. В повседневной жизни ты видишь только домен и путь —
+          остальное браузер либо скрывает, либо добавляет сам.
+        </p>
       </section>
 
-      {/* ── 6. Что происходит когда вводишь URL ──────────────────────────────── */}
+      {/* ── 6. Что происходит после Enter ───────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Что на самом деле происходит, когда вводишь URL</SectionTitle>
+        <SectionTitle>Что происходит после нажатия Enter</SectionTitle>
         <p className={s.body}>
-          Сетевая часть (DNS, TCP, TLS, HTTP) подробно разобрана в соседней статье «Как работает браузер».
-          Здесь — про то, что происходит <em>внутри браузера</em> с точки зрения процессов.
+          Ты ввёл адрес и нажал Enter. Браузер берёт URL из адресной строки,
+          выделяет доменный адрес и начинает цепочку шагов — прежде чем страница
+          появится на экране. Пройди по каждому:
         </p>
-        <CodeHighlight lang="bash" code={`// Оркестрация процессов при вводе URL
-
-1. Browser Process
-   ← Пользователь нажал Enter
-   → Запрос в Network Process: "загрузи https://example.com"
-
-2. Network Process
-   → DNS lookup → TCP → TLS → HTTP запрос
-   ← Получает байты HTML (streaming)
-   → IPC к Browser Process: "вот данные, это text/html"
-
-3. Browser Process
-   → Создаёт новый Renderer Process для example.com
-   → Передаёт данные через IPC
-
-4. Renderer Process (sandbox)
-   ← Blink начинает парсить HTML из потока байт
-   ← По мере парсинга встречает <script>, <img>, <link>
-   → IPC к Network Process: "загрузи ещё эти ресурсы"
-   ← Строит DOM + CSSOM → Render Tree → Layout → Paint
-
-5. GPU Process
-   ← Compositor получает layer-список от Renderer
-   → Растеризует слои на GPU
-   → Результат появляется на экране (frame commit)`} />
-        <p className={s.body}>
-          Весь этот обмен идёт через <strong>IPC (inter-process communication)</strong> —
-          браузер-специфичный протокол поверх pipe/socket. Renderer не может напрямую
-          вызвать сеть или файловую систему — только попросить через IPC.
-          Именно это делает sandbox надёжным.
-        </p>
-        <div className={s.infoCard}>
-          <div className={s.infoLabel}>DEVTOOLS — ВХОД В ПОТРОХА</div>
-          <div className={s.infoText}>
-            <code>chrome://process-internals</code> — список всех процессов браузера с PID.{' '}
-            <code>chrome://tracing</code> — трейсинг на уровне каждого потока каждого процесса.
-            Task Manager браузера (Shift+Esc) — память и CPU по процессам.
-            Именно так Chrome-команда отлаживает вещи, которые Lighthouse не покажет.
-          </div>
-        </div>
-      </section>
-
-      {/* ── 7. Sandbox ───────────────────────────────────────────────────────── */}
-      <section className={s.section}>
-        <SectionTitle>Sandbox: почему вредоносный сайт не может читать твои файлы</SectionTitle>
-        <p className={s.body}>
-          Renderer process — самый опасный с точки зрения безопасности: он исполняет JS
-          с любого сайта в интернете, включая вредоносные. Поэтому он работает в
-          <strong> sandbox</strong> — режиме, в котором ОС ограничивает возможности процесса.
-        </p>
-        <CodeHighlight lang="bash" code={`// Что sandbox запрещает renderer process:
-
-✗  Открыть/прочитать файл на диске
-✗  Создать сетевое соединение напрямую
-✗  Получить доступ к буферу обмена без явного действия пользователя
-✗  Запустить другой процесс
-✗  Обратиться к системным API (registry, keychain)
-
-// Всё это идёт через Browser Process с явной валидацией:
-Renderer: "хочу загрузить https://api.example.com/data"
-Browser:  проверяет CORS, CSP, permissions → если ок → Network Process делает запрос
-Browser:  возвращает результат в Renderer через IPC
-
-// Именно поэтому даже RCE-уязвимость в Blink (выполнение
-// произвольного кода) не даёт атакующему доступ к системе —
-// он в sandbox. Нужен второй эксплойт (sandbox escape).`} />
-        <Callout variant="accent">
-          Это объясняет, почему браузерные уязвимости ценятся так высоко — они требуют двух эксплойтов:
-          один в rendering engine (RCE), второй — sandbox escape. Именно поэтому Chrome платит
-          до $250 000 за такую цепочку в своей bug bounty программе.
-        </Callout>
+        <URLJourneyDemo />
       </section>
 
       {/* ── Quiz ─────────────────────────────────────────────────────────────── */}

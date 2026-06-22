@@ -1,0 +1,159 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+$c-global:  #4db8ff;
+$c-ctrl:    #e0234e;
+$c-method:  #00e5a0;
+
+.root {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+// ── Inputs ─────────────────────────────────────────────────────────────────────
+
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 1px solid $border-subtle;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  padding: $space-4;
+  border-right: 1px solid $border-subtle;
+
+  &:last-child { border-right: none; }
+
+  @include mobile {
+    border-right: none;
+    border-bottom: 1px solid $border-subtle;
+    &:last-child { border-bottom: none; }
+  }
+}
+
+.inputLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+.inputSub {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-muted;
+  margin-bottom: $space-1;
+}
+
+.inputWrap {
+  display: flex;
+  align-items: center;
+  gap: $space-1;
+}
+
+.slash {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+}
+
+.input {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 1px solid $border-default;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  padding: $space-1 0;
+  outline: none;
+  transition: border-color $t-fast;
+  min-width: 0;
+
+  &::placeholder { color: $text-muted; opacity: 0.6; }
+
+  &.global {
+    color: $c-global;
+    border-bottom-color: rgba(77, 184, 255, 0.35);
+    &:focus { border-bottom-color: $c-global; }
+  }
+
+  &.ctrl {
+    color: $c-ctrl;
+    border-bottom-color: rgba(224, 35, 78, 0.35);
+    &:focus { border-bottom-color: $c-ctrl; }
+  }
+
+  &.method {
+    color: $c-method;
+    border-bottom-color: rgba(0, 229, 160, 0.35);
+    &:focus { border-bottom-color: $c-method; }
+  }
+}
+
+// ── Result ─────────────────────────────────────────────────────────────────────
+
+.result {
+  padding: $space-4 $space-5;
+  background: $bg-elevated;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.resultLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+.url {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-family: $font-mono;
+  font-size: $text-base;
+  line-height: $line-normal;
+  gap: 0;
+}
+
+.base { color: $text-muted; }
+
+.seg {
+  font-weight: 600;
+  transition: color $t-fast;
+}
+
+.segRoot   { color: $text-muted; }
+.segGlobal { color: $c-global; }
+.segCtrl   { color: $c-ctrl; }
+.segMethod { color: $c-method; }
+
+// ── Legend ─────────────────────────────────────────────────────────────────────
+
+.legend {
+  display: flex;
+  gap: $space-2;
+  flex-wrap: wrap;
+  margin-top: $space-1;
+}
+
+.badge {
+  font-family: $font-mono;
+  font-size: 10px;
+  padding: 2px $space-2;
+  border-radius: $radius-sm;
+}
+
+.badgeGlobal { color: $c-global; background: rgba(77, 184, 255, 0.1); }
+.badgeCtrl   { color: $c-ctrl;   background: rgba(224, 35, 78, 0.1); }
+.badgeMethod { color: $c-method; background: rgba(0, 229, 160, 0.1); }

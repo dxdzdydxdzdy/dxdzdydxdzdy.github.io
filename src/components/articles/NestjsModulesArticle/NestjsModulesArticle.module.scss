@@ -1,0 +1,187 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.lead {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+.body {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+  em { font-style: normal; color: $text-primary; }
+}
+
+// ── Anatomy (поля @Module) ────────────────────────────────────────────────────
+
+.anatomy {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.anatRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid $border-subtle;
+  align-items: start;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.anatKey {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: #e0234e;
+  padding: $space-3 $space-4;
+  border-right: 1px solid $border-subtle;
+  background: rgba(224,35,78,0.04);
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.anatVal {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3 $space-4;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224,35,78,0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Flow diagram ──────────────────────────────────────────────────────────────
+
+.flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-4;
+  background: $bg-elevated;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  font-family: $font-mono;
+  font-size: $text-sm;
+}
+
+.flowStep {
+  padding: $space-1 $space-3;
+  border-radius: $radius-sm;
+  background: $bg-surface;
+  border: 1px solid $border-subtle;
+  color: $text-secondary;
+  white-space: nowrap;
+
+  &.module { color: #e0234e; border-color: rgba(224,35,78,0.3); background: rgba(224,35,78,0.06); }
+  &.app    { color: $info;   border-color: rgba(77,184,255,0.3); background: rgba(77,184,255,0.06); }
+  &.ok     { color: $accent; border-color: rgba(0,229,160,0.3); background: rgba(0,229,160,0.06); }
+}
+
+.flowArrow {
+  color: $text-muted;
+  font-size: 16px;
+  line-height: 1;
+}
+
+// ── Error box ─────────────────────────────────────────────────────────────────
+
+.errorBox {
+  background: rgba(255, 90, 90, 0.06);
+  border: 1px solid rgba(255, 90, 90, 0.2);
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $error;
+  line-height: 1.6;
+}
+
+// ── Global table ──────────────────────────────────────────────────────────────
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-3;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.compareCol {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.compareHead {
+  padding: $space-2 $space-4;
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: $letter-wider;
+  border-bottom: 1px solid $border-subtle;
+
+  &.good { color: $accent; background: rgba(0,229,160,0.08); }
+  &.bad  { color: $error;  background: rgba(255,90,90,0.08); }
+}
+
+.compareBody {
+  padding: $space-3 $space-4;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224,35,78,0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}

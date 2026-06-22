@@ -291,7 +291,7 @@ export class TaskController {
 
       {/* ── Homework ─────────────────────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Домашнее задание</SectionTitle>
+        <SectionTitle>Практика</SectionTitle>
         <HomeworkBlock items={[
           <>Добавь <code>UpdateAuthorDto</code> с полями <code>name: string</code> и <code>surname: string</code> в директорию <code>src/author/dto/</code>.</>,
           <>Реализуй метод <code>updateAuthor(id, dto)</code> в <code>AuthorService</code> — полная замена через PUT.</>,

@@ -1,0 +1,232 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.demo {
+  background: $bg-surface;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-lg;
+  overflow: hidden;
+}
+
+.demoHeader {
+  padding: $space-3 $space-4;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.demoTitle {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+}
+
+// ── URL bar ───────────────────────────────────────────────────────────────────
+
+.urlSection {
+  padding: $space-5 $space-6;
+  border-bottom: 1px solid $border-subtle;
+
+  @include mobile { padding: $space-4; }
+}
+
+.urlBar {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  background: $bg-elevated;
+  border: 1px solid $border-default;
+  border-radius: 20px;
+  padding: $space-2 $space-5;
+  flex-wrap: wrap;
+}
+
+.urlLock {
+  font-size: 14px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.urlTokens {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1px;
+}
+
+.token {
+  font-family: $font-mono;
+  font-size: $text-base;
+  font-weight: 600;
+  color: var(--tc, #{$text-primary});
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: $radius-sm $radius-sm 0 0;
+  padding: 3px 5px;
+  cursor: pointer;
+  transition: background $t-fast, border-color $t-fast;
+  line-height: 1.4;
+
+  &:hover {
+    border-bottom-color: var(--tc, #{$text-muted});
+    background: color-mix(in srgb, var(--tc, #{$text-muted}) 8%, transparent);
+  }
+
+  &.tokenActive {
+    background: color-mix(in srgb, var(--tc) 14%, transparent);
+    border-bottom-color: var(--tc);
+  }
+}
+
+// ── Legend ────────────────────────────────────────────────────────────────────
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+  padding: $space-3 $space-6;
+  border-bottom: 1px solid $border-subtle;
+
+  @include mobile { padding: $space-3 $space-4; }
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding: $space-1 $space-3;
+  background: transparent;
+  border: 1px solid $border-subtle;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all $t-fast;
+
+  &:hover {
+    border-color: var(--tc, #{$border-default});
+    background: color-mix(in srgb, var(--tc, #{$text-muted}) 6%, transparent);
+  }
+
+  &.legendActive {
+    border-color: var(--tc);
+    background: color-mix(in srgb, var(--tc) 10%, transparent);
+
+    .legendLabel { color: var(--tc); }
+  }
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--tc, #{$text-muted});
+  flex-shrink: 0;
+}
+
+.legendLabel {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-secondary;
+  transition: color $t-fast;
+}
+
+// ── Detail panel ──────────────────────────────────────────────────────────────
+
+.detail {
+  padding: $space-5 $space-6;
+  border-left: 3px solid var(--tc, #{$accent});
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  @include mobile { padding: $space-4; }
+}
+
+.detailTop {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  flex-wrap: wrap;
+}
+
+.detailCode {
+  font-family: $font-mono;
+  font-size: $text-md;
+  font-weight: 700;
+  color: var(--tc);
+  background: color-mix(in srgb, var(--tc) 12%, transparent);
+  padding: 2px $space-3;
+  border-radius: $radius-md;
+}
+
+.detailTitle {
+  font-family: $font-mono;
+  font-size: $text-base;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.detailDesc {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 64ch;
+  margin: 0;
+}
+
+// ── Examples ──────────────────────────────────────────────────────────────────
+
+.exList {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.exRow {
+  display: grid;
+  grid-template-columns: minmax(200px, auto) 1fr;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-2 $space-4;
+  border-bottom: 1px solid $border-subtle;
+  transition: background $t-fast;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $space-1;
+  }
+}
+
+.exCode {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: var(--tc);
+}
+
+.exNote {
+  font-size: $text-sm;
+  color: $text-muted;
+  line-height: $line-normal;
+}
+
+.optNote {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-muted;
+}
+
+// ── Hint ──────────────────────────────────────────────────────────────────────
+
+.hint {
+  padding: $space-5 $space-6;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $text-muted;
+  text-align: center;
+
+  @include mobile { padding: $space-4; }
+}

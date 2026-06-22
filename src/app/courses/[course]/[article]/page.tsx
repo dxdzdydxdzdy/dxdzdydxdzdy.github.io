@@ -66,6 +66,9 @@ import { NestjsRestArticle } from '@/components/articles/NestjsRestArticle/Nestj
 import { NestjsCrudArticle } from '@/components/articles/NestjsCrudArticle/NestjsCrudArticle';
 import { NestjsValidationArticle } from '@/components/articles/NestjsValidationArticle/NestjsValidationArticle';
 import { NestjsCustomValidatorsArticle } from '@/components/articles/NestjsCustomValidatorsArticle/NestjsCustomValidatorsArticle';
+import { NestjsModulesArticle } from '@/components/articles/NestjsModulesArticle/NestjsModulesArticle';
+import { NestjsDiArticle } from '@/components/articles/NestjsDiArticle/NestjsDiArticle';
+import { NestjsControllerArticle } from '@/components/articles/NestjsControllerArticle/NestjsControllerArticle';
 import { PlaceholderArticle } from '@/components/articles/PlaceholderArticle/PlaceholderArticle';
 import { RelatedArticles } from '@/components/ui/RelatedArticles/RelatedArticles';
 import { TableOfContents } from '@/components/ui/TableOfContents/TableOfContents';
@@ -164,6 +167,9 @@ export default async function ArticlePage({ params }: Props) {
     if (cSlug === 'nestjs' && aSlug === 'nestjs-crud')       return <NestjsCrudArticle />;
     if (cSlug === 'nestjs' && aSlug === 'nestjs-validation')       return <NestjsValidationArticle />;
     if (cSlug === 'nestjs' && aSlug === 'nestjs-custom-validators') return <NestjsCustomValidatorsArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-modules')          return <NestjsModulesArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-di')              return <NestjsDiArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-controller')      return <NestjsControllerArticle />;
     return <PlaceholderArticle title={article!.title} />;
   }
 

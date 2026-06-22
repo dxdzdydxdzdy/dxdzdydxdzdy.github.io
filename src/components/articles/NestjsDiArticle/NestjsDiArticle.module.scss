@@ -1,0 +1,272 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.lead {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+.body {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+  em { font-style: normal; color: $text-primary; }
+}
+
+// ── Before / After comparison ─────────────────────────────────────────────────
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-3;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.compareCol {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.compareHead {
+  padding: $space-2 $space-4;
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: $letter-wider;
+  border-bottom: 1px solid $border-subtle;
+
+  &.bad  { color: $error;  background: rgba(255, 95, 106, 0.08); }
+  &.good { color: $accent; background: rgba(0, 229, 160, 0.08); }
+}
+
+.compareBody {
+  padding: $space-3 $space-4;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Problems list ─────────────────────────────────────────────────────────────
+
+.problems {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.problem {
+  display: flex;
+  gap: $space-3;
+  padding: $space-3 $space-4;
+  border: 1px solid rgba(255, 95, 106, 0.15);
+  border-radius: $radius-md;
+  background: rgba(255, 95, 106, 0.04);
+  align-items: flex-start;
+}
+
+.problemIcon {
+  color: $error;
+  font-family: $font-mono;
+  font-size: $text-sm;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.problemText {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Container anatomy ─────────────────────────────────────────────────────────
+
+.anatomy {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.anatRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid $border-subtle;
+  align-items: start;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.anatKey {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: #e0234e;
+  padding: $space-3 $space-4;
+  border-right: 1px solid $border-subtle;
+  background: rgba(224, 35, 78, 0.04);
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.anatVal {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3 $space-4;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Scope badge ───────────────────────────────────────────────────────────────
+
+.scopeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-3;
+}
+
+.scopeCard {
+  flex: 1;
+  min-width: 160px;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+}
+
+.scopeName {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  font-weight: 600;
+  margin-bottom: $space-1;
+
+  &.default { color: $accent; }
+  &.request { color: $info; }
+  &.transient { color: $warn; }
+}
+
+.scopeDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+}
+
+// ── Custom providers table ────────────────────────────────────────────────────
+
+.provTable {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.provHead {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.provHCell {
+  font-family: $font-mono;
+  font-size: 10px;
+  color: $text-muted;
+  letter-spacing: $letter-wider;
+  padding: $space-2 $space-3;
+  border-right: 1px solid $border-subtle;
+  &:last-child { border-right: none; }
+}
+
+.provRow {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  border-bottom: 1px solid $border-subtle;
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+}
+
+.provKey {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $info;
+  padding: $space-3;
+  border-right: 1px solid $border-subtle;
+}
+
+.provDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}

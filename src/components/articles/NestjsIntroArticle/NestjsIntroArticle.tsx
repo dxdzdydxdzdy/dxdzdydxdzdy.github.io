@@ -276,7 +276,7 @@ export class TaskController {
 
       {/* ── Homework ──────────────────────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Домашнее задание</SectionTitle>
+        <SectionTitle>Практика</SectionTitle>
         <HomeworkBlock items={[
           <>Установи Nest CLI глобально и убедись что команда <code>nest --version</code> работает.</>,
           <>Создай новое приложение командой <code>nest new my-first-nest</code>, выбери yarn или npm.</>,

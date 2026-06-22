@@ -282,7 +282,7 @@ export function MatchesField(
           <code>validate()</code> может возвращать <code>Promise{'<boolean>'}</code>.
           Для этого нужно указать <code>async: true</code> в{' '}
           <code>@ValidatorConstraint</code> и добавить <code>@Injectable()</code>
-          чтобы инжектировать сервис.
+          чтобы получить сервис через DI-контейнер.
         </p>
         <CodeHighlight lang="ts" filename="src/common/decorators/is-unique-email.decorator.ts" code={`import { Injectable } from '@nestjs/common';
 import {
@@ -365,7 +365,7 @@ export function IsUniqueEmail(options?: ValidationOptions) {
 
       {/* ── Homework ─────────────────────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Домашнее задание</SectionTitle>
+        <SectionTitle>Практика</SectionTitle>
         <HomeworkBlock items={[
           <>Создай inline-декоратор <code>@IsISBN()</code> для валидации ISBN-13 (13 цифр, может содержать дефисы). Помести в <code>src/book/decorators/is-isbn.decorator.ts</code> и примени к полю <code>isbn</code> в <code>CreateBookDto</code>.</>,
           <>Создай параметризованный декоратор <code>@MaxWords(n)</code> — строка должна содержать не более n слов. Применение: <code>@MaxWords(20)</code> на поле <code>description</code>. Количество слов считай через <code>value.trim().split(/\s+/).length</code>.</>,

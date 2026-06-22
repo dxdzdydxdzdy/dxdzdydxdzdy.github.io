@@ -1,0 +1,198 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.lead {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+.body {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+  em { font-style: normal; color: $text-primary; }
+}
+
+// ── Comparison panels ──────────────────────────────────────────────────────────
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-3;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.compareCol {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.compareHead {
+  padding: $space-2 $space-4;
+  font-family: $font-mono;
+  font-size: 11px;
+  letter-spacing: $letter-wider;
+  border-bottom: 1px solid $border-subtle;
+
+  &.bad  { color: $error;  background: rgba(255, 95, 106, 0.08); }
+  &.good { color: $accent; background: rgba(0, 229, 160, 0.08); }
+}
+
+.compareBody {
+  padding: $space-3 $space-4;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Anatomy table ──────────────────────────────────────────────────────────────
+
+.anatomy {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.anatRow {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  border-bottom: 1px solid $border-subtle;
+  align-items: start;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.anatKey {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: #e0234e;
+  padding: $space-3 $space-4;
+  border-right: 1px solid $border-subtle;
+  background: rgba(224, 35, 78, 0.04);
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.anatVal {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3 $space-4;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Mode cards (no param / string / object) ────────────────────────────────────
+
+.modeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $space-3;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.modeCard {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.modeTag {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+.modeCode {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: #e0234e;
+  font-weight: 600;
+}
+
+.modeDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+.modeResult {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $accent;
+  margin-top: auto;
+  padding-top: $space-2;
+  border-top: 1px solid $border-subtle;
+}

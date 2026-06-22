@@ -258,6 +258,65 @@
   strong { color: $text-primary; font-weight: 600; }
 }
 
+// ── Two columns (JS section) ──────────────────────────────────────────────────
+
+.twoCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-4;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.colCard {
+  background: $bg-elevated;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  padding: $space-4;
+}
+
+.colTitle {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $text-muted;
+  margin-bottom: $space-3;
+}
+
+.colList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.colItemOk,
+.colItemNo {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+  display: flex;
+  align-items: flex-start;
+  gap: $space-2;
+
+  &::before {
+    font-family: $font-mono;
+    flex-shrink: 0;
+  }
+}
+
+.colItemOk::before {
+  content: '✓';
+  color: $accent;
+}
+
+.colItemNo::before {
+  content: '✗';
+  color: $error;
+}
+
 // ── Stat grid ─────────────────────────────────────────────────────────────────
 
 .statGrid {

@@ -295,7 +295,7 @@ userId: string;
 
       {/* ── Homework ─────────────────────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Домашнее задание</SectionTitle>
+        <SectionTitle>Практика</SectionTitle>
         <HomeworkBlock items={[
           <>Сгенерируй ресурс <code>nest g res book --no-spec</code>. Создай <code>CreateBookDto</code> с обязательными полями: <code>title: string</code> (<code>@Length(3, 100)</code>) и <code>author: string</code> (<code>@IsNotEmpty</code>). Добавь кастомные сообщения для обоих.</>,
           <>Добавь обязательное поле <code>price: number</code> — целое положительное число (цена в рублях). Используй <code>@IsInt</code> и <code>@IsPositive</code> с сообщениями.</>,

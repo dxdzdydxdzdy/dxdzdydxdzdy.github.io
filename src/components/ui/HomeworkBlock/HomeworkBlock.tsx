@@ -7,10 +7,6 @@ interface Props {
 export function HomeworkBlock({ items }: Props) {
   return (
     <div className={s.root}>
-      <div className={s.header}>
-        <span className={s.icon}>◆</span>
-        <span className={s.title}>// homework</span>
-      </div>
       <ol className={s.list}>
         {items.map((item, i) => (
           <li key={i} className={s.item}>

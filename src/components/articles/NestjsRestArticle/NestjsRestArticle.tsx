@@ -290,7 +290,7 @@ create(dto: CreateTaskDto) {
 
       {/* ── Homework ──────────────────────────────────────────────────────────── */}
       <section className={s.section}>
-        <SectionTitle>Домашнее задание</SectionTitle>
+        <SectionTitle>Практика</SectionTitle>
         <HomeworkBlock items={[
           <>Сгенерируй сущность <code>nest g res author --no-spec</code>. Убедись что в <code>app.module.ts</code> появился <code>AuthorModule</code>.</>,
           <>В <code>AuthorService</code> создай массив авторов с полями <code>id</code>, <code>name</code>, <code>surname</code>. Добавь методы <code>findAll()</code> и <code>findById(id: number)</code> с <code>NotFoundException</code>.</>,
