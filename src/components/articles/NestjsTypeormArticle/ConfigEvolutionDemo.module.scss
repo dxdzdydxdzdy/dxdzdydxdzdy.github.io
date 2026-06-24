@@ -1,0 +1,126 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.root {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+// ── Tabs ───────────────────────────────────────────────────────────────────────
+
+.tabs {
+  display: flex;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+  overflow-x: auto;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.tab {
+  flex-shrink: 0;
+  padding: $space-3 $space-5;
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-muted;
+  background: none;
+  border: none;
+  border-right: 1px solid $border-subtle;
+  cursor: pointer;
+  transition: color $t-fast, background $t-fast;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  &:hover:not(.active) { color: $text-secondary; background: rgba(255,255,255,0.03); }
+  &:last-child { border-right: none; }
+  &.active { color: $text-primary; background: $bg-surface; }
+}
+
+.tabNum {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  flex-shrink: 0;
+
+  .bad  & { background: rgba(255, 95, 106, 0.15); color: $error; }
+  .ok   & { background: rgba(240, 192, 64, 0.15); color: $warn; }
+  .good & { background: rgba(0, 229, 160, 0.15);  color: $accent; }
+}
+
+// ── Panel ──────────────────────────────────────────────────────────────────────
+
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.codeWrap {
+  overflow-x: auto;
+  padding: $space-4;
+  border-right: 1px solid $border-subtle;
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.code {
+  margin: 0;
+  font-family: $font-mono;
+  font-size: 12px;
+  line-height: 1.7;
+  color: $text-secondary;
+  white-space: pre;
+}
+
+.kw   { color: #4db8ff; }
+.str  { color: #00e5a0; }
+.fn   { color: #e0234e; }
+.com  { color: $text-muted; }
+.hl   { color: #f0c040; font-weight: 600; }
+
+// ── Side ───────────────────────────────────────────────────────────────────────
+
+.side {
+  padding: $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+}
+
+.sideTitle {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.point {
+  display: flex;
+  gap: $space-2;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+  align-items: flex-start;
+}
+
+.icon { flex-shrink: 0; }
+.iconOk  { color: $accent; }
+.iconBad { color: $error; }
+.iconWarn { color: $warn; }

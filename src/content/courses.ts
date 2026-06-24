@@ -290,6 +290,8 @@ export const courses: Course[] = [
       a('nestjs-modules',           'Декоратор @Module и связи между модулями', 'controllers, providers, exports, imports — как работает инкапсуляция NestJS. Импорт сервисов между модулями, @Global() и когда он нужен.', ['nestjs', 'modules', 'di'], true),
       a('nestjs-di',                'Dependency Injection',                     'Почему писать new Service() внутри класса — плохая идея. Как NestJS сам создаёт объекты и передаёт их куда надо — и почему это делает код удобнее для тестирования.', ['nestjs', 'di', 'architecture'], true),
       a('nestjs-controller',        'Декоратор @Controller',                    'Как @Controller задаёт адрес класса, из чего складывается итоговый URL и как глобальный префикс избавляет от дублирования. Интерактивный сборщик URL.', ['nestjs', 'rest', 'routing'], true),
+      a('nestjs-params',            'Декораторы параметров',                     '@Query, @Body, @Param, @Headers — как достать нужные данные из запроса без обращения к req напрямую. Интерактивное демо с живым запросом.', ['nestjs', 'rest', 'decorators'], true),
+      a('nestjs-typeorm',           'Подключение TypeORM и Postgres',             'ORM против SQL вручную. Docker, @nestjs/config, три подхода к конфигурации — от захардкоженных значений до вынесенного файла. forRoot, forRootAsync, imports и inject.', ['nestjs', 'database', 'typeorm'], true),
     ]),
 
   ]),
