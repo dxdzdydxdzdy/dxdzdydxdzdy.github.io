@@ -147,7 +147,7 @@ export function NestjsPractice1Article() {
 
       {/* ── Task 5 star ── */}
       <Task
-        num="задание со ★"
+        num="задание со звёздочкой"
         title="Поиск и пагинация"
         star
         desc={<>

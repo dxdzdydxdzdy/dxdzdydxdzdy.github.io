@@ -236,22 +236,21 @@
 }
 
 .hintBlock {
+  position: relative;
   border: 1px solid rgba(100, 181, 246, 0.25);
   background: rgba(100, 181, 246, 0.04);
   border-radius: $radius-sm;
-  padding: $space-3 $space-4;
-  display: flex;
-  gap: $space-2;
-  align-items: flex-start;
+  padding: $space-3 $space-4 $space-3 2.2em;
   font-size: $text-sm;
   color: $text-secondary;
-  line-height: $line-normal;
+  line-height: $line-loose;
 
   &::before {
     content: '💡';
-    flex-shrink: 0;
     font-size: 14px;
-    margin-top: 1px;
+    position: absolute;
+    left: $space-4;
+    top: $space-3;
   }
 
   code {
