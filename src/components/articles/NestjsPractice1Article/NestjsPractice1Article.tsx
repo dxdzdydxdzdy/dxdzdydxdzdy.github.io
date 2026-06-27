@@ -35,7 +35,7 @@ function Task({
             <div className={s.resultText}>{result}</div>
           </div>
         )}
-        {hint && <div className={s.hintBlock}>{hint}</div>}
+        {hint && <div className={s.hintBlock}><span className={s.hintContent}>{hint}</span></div>}
       </div>
     </div>
   );

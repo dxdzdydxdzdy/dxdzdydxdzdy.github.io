@@ -236,22 +236,26 @@
 }
 
 .hintBlock {
-  position: relative;
+  display: flex;
+  gap: $space-3;
+  align-items: flex-start;
   border: 1px solid rgba(100, 181, 246, 0.25);
   background: rgba(100, 181, 246, 0.04);
   border-radius: $radius-sm;
-  padding: $space-3 $space-4 $space-3 2.2em;
-  font-size: $text-sm;
-  color: $text-secondary;
-  line-height: $line-loose;
+  padding: $space-3 $space-4;
 
   &::before {
     content: '💡';
     font-size: 14px;
-    position: absolute;
-    left: $space-4;
-    top: $space-3;
+    flex-shrink: 0;
+    margin-top: 1px;
   }
+}
+
+.hintContent {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
 
   code {
     color: #e0234e;
