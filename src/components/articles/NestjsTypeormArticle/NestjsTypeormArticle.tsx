@@ -213,8 +213,8 @@ POSTGRES_DB=nestjs-course`} />
           <div className={s.anatRow}>
             <div className={s.anatKey}>imports: [ConfigModule]</div>
             <div className={s.anatVal}>
-              Гарантирует что <code>ConfigModule</code> загрузится <strong>до</strong> выполнения
-              <code> useFactory</code>. Без этого NestJS не найдёт <code>ConfigService</code>
+              Гарантирует что <code>ConfigModule</code> загрузится <strong>до</strong> выполнения{' '}
+              <code>useFactory</code>. Без этого NestJS не найдёт <code>ConfigService</code>
               в момент инициализации TypeORM.
             </div>
           </div>

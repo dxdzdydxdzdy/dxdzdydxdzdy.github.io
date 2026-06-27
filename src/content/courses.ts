@@ -292,6 +292,9 @@ export const courses: Course[] = [
       a('nestjs-controller',        'Декоратор @Controller',                    'Как @Controller задаёт адрес класса, из чего складывается итоговый URL и как глобальный префикс избавляет от дублирования. Интерактивный сборщик URL.', ['nestjs', 'rest', 'routing'], true),
       a('nestjs-params',            'Декораторы параметров',                     '@Query, @Body, @Param, @Headers — как достать нужные данные из запроса без обращения к req напрямую. Интерактивное демо с живым запросом.', ['nestjs', 'rest', 'decorators'], true),
       a('nestjs-typeorm',           'Подключение TypeORM и Postgres',             'ORM против SQL вручную. Docker, @nestjs/config, три подхода к конфигурации — от захардкоженных значений до вынесенного файла. forRoot, forRootAsync, imports и inject.', ['nestjs', 'database', 'typeorm'], true),
+      a('nestjs-entity',            'Сущности TypeORM: декораторы и типы колонок', '@Entity, @PrimaryGeneratedColumn, @Column с типами — varchar, text, int, decimal, boolean, enum. @CreateDateColumn и @UpdateDateColumn. Как описать таблицу кодом.', ['nestjs', 'database', 'typeorm'], true),
+      a('nestjs-repository',        'Репозиторий TypeORM: CRUD-операции',          'find, findOne, create, save, remove — как делать запросы к БД из сервиса. Опции find(): where, order, take, skip, select. Паттерн findById с обработкой 404.', ['nestjs', 'database', 'typeorm'], true),
+      a('nestjs-practice-1',        'Практика: BookStore API',                     'Самостоятельная работа. Строим API книжного магазина с нуля: сущность, DTO, сервис, контроллер. Задание со ★ — поиск с пагинацией через ILike и findAndCount.', ['nestjs', 'database', 'typeorm', 'practice'], true),
     ]),
 
   ]),

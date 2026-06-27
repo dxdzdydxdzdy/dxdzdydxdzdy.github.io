@@ -71,6 +71,9 @@ import { NestjsDiArticle } from '@/components/articles/NestjsDiArticle/NestjsDiA
 import { NestjsControllerArticle } from '@/components/articles/NestjsControllerArticle/NestjsControllerArticle';
 import { NestjsParamsArticle } from '@/components/articles/NestjsParamsArticle/NestjsParamsArticle';
 import { NestjsTypeormArticle } from '@/components/articles/NestjsTypeormArticle/NestjsTypeormArticle';
+import { NestjsEntityArticle } from '@/components/articles/NestjsEntityArticle/NestjsEntityArticle';
+import { NestjsRepositoryArticle } from '@/components/articles/NestjsRepositoryArticle/NestjsRepositoryArticle';
+import { NestjsPractice1Article } from '@/components/articles/NestjsPractice1Article/NestjsPractice1Article';
 import { PlaceholderArticle } from '@/components/articles/PlaceholderArticle/PlaceholderArticle';
 import { RelatedArticles } from '@/components/ui/RelatedArticles/RelatedArticles';
 import { TableOfContents } from '@/components/ui/TableOfContents/TableOfContents';
@@ -174,6 +177,9 @@ export default async function ArticlePage({ params }: Props) {
     if (cSlug === 'nestjs' && aSlug === 'nestjs-controller')      return <NestjsControllerArticle />;
     if (cSlug === 'nestjs' && aSlug === 'nestjs-params')          return <NestjsParamsArticle />;
     if (cSlug === 'nestjs' && aSlug === 'nestjs-typeorm')         return <NestjsTypeormArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-entity')          return <NestjsEntityArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-repository')      return <NestjsRepositoryArticle />;
+    if (cSlug === 'nestjs' && aSlug === 'nestjs-practice-1')      return <NestjsPractice1Article />;
     return <PlaceholderArticle title={article!.title} />;
   }
 

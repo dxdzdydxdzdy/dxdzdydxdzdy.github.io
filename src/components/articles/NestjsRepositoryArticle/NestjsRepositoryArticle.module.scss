@@ -1,0 +1,175 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.lead {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+.body {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+// ── Inject block ───────────────────────────────────────────────────────────────
+
+.injectCard {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+  max-width: 72ch;
+}
+
+.injectHead {
+  padding: $space-2 $space-4;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $text-muted;
+  text-transform: uppercase;
+}
+
+// ── Methods table ──────────────────────────────────────────────────────────────
+
+.methodsTable {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.methodRow {
+  display: grid;
+  grid-template-columns: 180px 100px 1fr;
+  border-bottom: 1px solid $border-subtle;
+  align-items: start;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.methodName {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: $info;
+  padding: $space-3 $space-4;
+  border-right: 1px solid $border-subtle;
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.methodSync {
+  font-family: $font-mono;
+  font-size: 10px;
+  padding: $space-3 $space-3;
+  border-right: 1px solid $border-subtle;
+
+  &.async { color: $warn; }
+  &.sync  { color: $accent; }
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.methodDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3 $space-4;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Find options table ─────────────────────────────────────────────────────────
+
+.optTable {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.optRow {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  border-bottom: 1px solid $border-subtle;
+  align-items: start;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.optKey {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: #e0234e;
+  padding: $space-3 $space-4;
+  border-right: 1px solid $border-subtle;
+  background: rgba(224, 35, 78, 0.04);
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.optDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3 $space-4;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}

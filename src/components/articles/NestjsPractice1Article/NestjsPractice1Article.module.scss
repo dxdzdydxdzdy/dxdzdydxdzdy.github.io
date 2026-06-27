@@ -1,0 +1,265 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+// ── Intro ──────────────────────────────────────────────────────────────────────
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.lead {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+// ── Endpoints preview ──────────────────────────────────────────────────────────
+
+.endpoints {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $bg-surface;
+  max-width: 72ch;
+}
+
+.endpoint {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-2 $space-4;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+  font-family: $font-mono;
+  font-size: 12px;
+
+  &:last-child { border-bottom: none; }
+}
+
+.method {
+  font-weight: 700;
+  width: 52px;
+  flex-shrink: 0;
+
+  &.get    { color: $accent; }
+  &.post   { color: $info; }
+  &.put    { color: $warn; }
+  &.delete { color: #e0234e; }
+  &.patch  { color: #c792ea; }
+}
+
+.path {
+  color: $text-secondary;
+  flex: 1;
+}
+
+.pathNote {
+  color: $text-muted;
+  font-size: 11px;
+}
+
+// ── Task card ──────────────────────────────────────────────────────────────────
+
+.task {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.taskStar {
+  border-color: rgba(255, 183, 77, 0.5);
+  box-shadow: 0 0 24px rgba(255, 183, 77, 0.06);
+}
+
+.taskHead {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+  padding: $space-3 $space-5;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.taskHeadStar {
+  background: rgba(255, 183, 77, 0.07);
+  border-color: rgba(255, 183, 77, 0.3);
+}
+
+.taskNum {
+  font-family: $font-mono;
+  font-size: 10px;
+  color: $text-muted;
+  letter-spacing: $letter-wider;
+  text-transform: uppercase;
+}
+
+.taskTitle {
+  font-size: $text-base;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.starBadge {
+  margin-left: auto;
+  font-size: 16px;
+  line-height: 1;
+}
+
+.taskBody {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+  padding: $space-5;
+}
+
+.taskDesc {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 68ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+// ── Requirement list ───────────────────────────────────────────────────────────
+
+.reqList {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.reqLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $text-muted;
+  text-transform: uppercase;
+  margin-bottom: $space-1;
+}
+
+.req {
+  position: relative;
+  padding-left: 1.4em;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+
+  &::before {
+    content: '—';
+    color: $accent;
+    font-family: $font-mono;
+    font-size: 12px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+  }
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  strong { color: $text-primary; font-weight: 600; }
+}
+
+// ── Result / hint blocks ───────────────────────────────────────────────────────
+
+.resultBlock {
+  border: 1px solid rgba(0, 229, 160, 0.25);
+  background: rgba(0, 229, 160, 0.04);
+  border-radius: $radius-sm;
+  padding: $space-3 $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.resultLabel {
+  font-family: $font-mono;
+  font-size: 10px;
+  letter-spacing: $letter-wider;
+  color: $accent;
+  text-transform: uppercase;
+}
+
+.resultText {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+.hintBlock {
+  border: 1px solid rgba(100, 181, 246, 0.25);
+  background: rgba(100, 181, 246, 0.04);
+  border-radius: $radius-sm;
+  padding: $space-3 $space-4;
+  display: flex;
+  gap: $space-2;
+  align-items: flex-start;
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  &::before {
+    content: '💡';
+    flex-shrink: 0;
+    font-size: 14px;
+    margin-top: 1px;
+  }
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}

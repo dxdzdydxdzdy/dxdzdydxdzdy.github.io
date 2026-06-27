@@ -1,0 +1,195 @@
+@use '../../../styles/tokens' as *;
+@use '../../../styles/mixins' as *;
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: $space-10;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
+}
+
+.lead {
+  font-size: $text-base;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+}
+
+.body {
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-loose;
+  max-width: 72ch;
+
+  strong { color: $text-primary; font-weight: 600; }
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 1px $space-2;
+    font-family: $font-mono;
+    font-size: 12px;
+  }
+  em { font-style: normal; color: $text-primary; }
+}
+
+// ── ID comparison ──────────────────────────────────────────────────────────────
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-3;
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.card {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  overflow: hidden;
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-2 $space-4;
+  background: $bg-elevated;
+  border-bottom: 1px solid $border-subtle;
+}
+
+.cardLabel {
+  font-family: $font-mono;
+  font-size: 11px;
+  color: $text-muted;
+}
+
+.cardBadge {
+  font-family: $font-mono;
+  font-size: 10px;
+  padding: 1px $space-2;
+  border-radius: $radius-sm;
+  border: 1px solid;
+
+  &.num { color: $info;  border-color: rgba(100, 181, 246, 0.4); background: rgba(100, 181, 246, 0.07); }
+  &.str { color: $accent; border-color: rgba(0, 229, 160, 0.4); background: rgba(0, 229, 160, 0.07); }
+}
+
+.cardBody {
+  padding: $space-3 $space-4;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+}
+
+.cardCode {
+  font-family: $font-mono;
+  font-size: 12px;
+  color: $text-secondary;
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.cardNote {
+  font-size: $text-sm;
+  color: $text-muted;
+  line-height: $line-normal;
+}
+
+// ── Table ──────────────────────────────────────────────────────────────────────
+
+.anatomy {
+  border: 1px solid $border-subtle;
+  border-radius: $radius-md;
+  background: $bg-surface;
+  overflow: hidden;
+}
+
+.anatRow {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  border-bottom: 1px solid $border-subtle;
+  align-items: start;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: $bg-elevated; }
+
+  @include mobile { grid-template-columns: 1fr; }
+}
+
+.anatKey {
+  font-family: $font-mono;
+  font-size: $text-sm;
+  color: #e0234e;
+  padding: $space-3 $space-4;
+  border-right: 1px solid $border-subtle;
+  background: rgba(224, 35, 78, 0.04);
+
+  @include mobile { border-right: none; border-bottom: 1px solid $border-subtle; }
+}
+
+.anatVal {
+  font-size: $text-sm;
+  color: $text-secondary;
+  padding: $space-3 $space-4;
+  line-height: $line-normal;
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+}
+
+// ── Callout ────────────────────────────────────────────────────────────────────
+
+.callout {
+  border: 1px solid rgba(255, 183, 77, 0.35);
+  background: rgba(255, 183, 77, 0.05);
+  border-radius: $radius-md;
+  padding: $space-4;
+  display: flex;
+  gap: $space-3;
+  align-items: flex-start;
+  max-width: 72ch;
+
+  font-size: $text-sm;
+  color: $text-secondary;
+  line-height: $line-normal;
+
+  &::before {
+    content: '⚠';
+    color: $warn;
+    font-size: $text-base;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  code {
+    color: #e0234e;
+    background: rgba(224, 35, 78, 0.1);
+    border-radius: $radius-sm;
+    padding: 0 $space-1;
+    font-family: $font-mono;
+    font-size: 11px;
+  }
+  strong { color: $warn; font-weight: 600; }
+}
